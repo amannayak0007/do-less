@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D85EC3E0173118F1009DA21D /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = D85EC3DF173118F1009DA21D /* Icon.png */; };
+		D85EC3E2173118FD009DA21D /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D85EC3E1173118FD009DA21D /* Icon@2x.png */; };
 		D8656BE7172F932800C0AFDE /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8656BE6172F932800C0AFDE /* UIKit.framework */; };
 		D8656BE9172F932800C0AFDE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8656BE8172F932800C0AFDE /* Foundation.framework */; };
 		D8656BEB172F932800C0AFDE /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8656BEA172F932800C0AFDE /* CoreGraphics.framework */; };
@@ -24,6 +26,10 @@
 		D8656C10172F932800C0AFDE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8656BE8172F932800C0AFDE /* Foundation.framework */; };
 		D8656C18172F932800C0AFDE /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D8656C16172F932800C0AFDE /* InfoPlist.strings */; };
 		D8656C1B172F932800C0AFDE /* Next_ActionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D8656C1A172F932800C0AFDE /* Next_ActionTests.m */; };
+		D8656C25172F97BD00C0AFDE /* EventKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8656C24172F97BD00C0AFDE /* EventKit.framework */; };
+		D8656C28172F9A2C00C0AFDE /* Action.m in Sources */ = {isa = PBXBuildFile; fileRef = D8656C27172F9A2C00C0AFDE /* Action.m */; };
+		D86B1100172FEB86003DE094 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D86B10FF172FEB86003DE094 /* AudioToolbox.framework */; };
+		D86B112C17300BB1003DE094 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D86B112B17300BB1003DE094 /* AVFoundation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,6 +43,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D85EC3DF173118F1009DA21D /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Icon.png; path = ../Icon.png; sourceTree = "<group>"; };
+		D85EC3E1173118FD009DA21D /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon@2x.png"; path = "../Icon@2x.png"; sourceTree = "<group>"; };
 		D8656BE3172F932800C0AFDE /* Next Action.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Next Action.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8656BE6172F932800C0AFDE /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		D8656BE8172F932800C0AFDE /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -61,6 +69,11 @@
 		D8656C17172F932800C0AFDE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		D8656C19172F932800C0AFDE /* Next_ActionTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Next_ActionTests.h; sourceTree = "<group>"; };
 		D8656C1A172F932800C0AFDE /* Next_ActionTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Next_ActionTests.m; sourceTree = "<group>"; };
+		D8656C24172F97BD00C0AFDE /* EventKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKit.framework; path = System/Library/Frameworks/EventKit.framework; sourceTree = SDKROOT; };
+		D8656C26172F9A2C00C0AFDE /* Action.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Action.h; sourceTree = "<group>"; };
+		D8656C27172F9A2C00C0AFDE /* Action.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Action.m; sourceTree = "<group>"; };
+		D86B10FF172FEB86003DE094 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		D86B112B17300BB1003DE094 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +81,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D86B112C17300BB1003DE094 /* AVFoundation.framework in Frameworks */,
+				D86B1100172FEB86003DE094 /* AudioToolbox.framework in Frameworks */,
+				D8656C25172F97BD00C0AFDE /* EventKit.framework in Frameworks */,
 				D8656BE7172F932800C0AFDE /* UIKit.framework in Frameworks */,
 				D8656BE9172F932800C0AFDE /* Foundation.framework in Frameworks */,
 				D8656BEB172F932800C0AFDE /* CoreGraphics.framework in Frameworks */,
@@ -109,6 +125,9 @@
 		D8656BE5172F932800C0AFDE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D86B112B17300BB1003DE094 /* AVFoundation.framework */,
+				D86B10FF172FEB86003DE094 /* AudioToolbox.framework */,
+				D8656C24172F97BD00C0AFDE /* EventKit.framework */,
 				D8656BE6172F932800C0AFDE /* UIKit.framework */,
 				D8656BE8172F932800C0AFDE /* Foundation.framework */,
 				D8656BEA172F932800C0AFDE /* CoreGraphics.framework */,
@@ -120,13 +139,9 @@
 		D8656BEC172F932800C0AFDE /* Next Action */ = {
 			isa = PBXGroup;
 			children = (
-				D8656BF5172F932800C0AFDE /* AppDelegate.h */,
-				D8656BF6172F932800C0AFDE /* AppDelegate.m */,
+				D8656C29172F9A3D00C0AFDE /* Models */,
+				D8656C2A172F9A4700C0AFDE /* Controllers */,
 				D8656BFE172F932800C0AFDE /* MainStoryboard.storyboard */,
-				D8656C01172F932800C0AFDE /* MainViewController.h */,
-				D8656C02172F932800C0AFDE /* MainViewController.m */,
-				D8656C04172F932800C0AFDE /* FlipsideViewController.h */,
-				D8656C05172F932800C0AFDE /* FlipsideViewController.m */,
 				D8656BED172F932800C0AFDE /* Supporting Files */,
 			);
 			path = "Next Action";
@@ -135,13 +150,17 @@
 		D8656BED172F932800C0AFDE /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				D8656BEE172F932800C0AFDE /* Next Action-Info.plist */,
-				D8656BEF172F932800C0AFDE /* InfoPlist.strings */,
+				D85EC3E1173118FD009DA21D /* Icon@2x.png */,
+				D85EC3DF173118F1009DA21D /* Icon.png */,
+				D8656BF5172F932800C0AFDE /* AppDelegate.h */,
+				D8656BF6172F932800C0AFDE /* AppDelegate.m */,
 				D8656BF2172F932800C0AFDE /* main.m */,
 				D8656BF4172F932800C0AFDE /* Next Action-Prefix.pch */,
+				D8656BEE172F932800C0AFDE /* Next Action-Info.plist */,
+				D8656BFC172F932800C0AFDE /* Default-568h@2x.png */,
 				D8656BF8172F932800C0AFDE /* Default.png */,
 				D8656BFA172F932800C0AFDE /* Default@2x.png */,
-				D8656BFC172F932800C0AFDE /* Default-568h@2x.png */,
+				D8656BEF172F932800C0AFDE /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -163,6 +182,26 @@
 				D8656C16172F932800C0AFDE /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		D8656C29172F9A3D00C0AFDE /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				D8656C26172F9A2C00C0AFDE /* Action.h */,
+				D8656C27172F9A2C00C0AFDE /* Action.m */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		D8656C2A172F9A4700C0AFDE /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				D8656C01172F932800C0AFDE /* MainViewController.h */,
+				D8656C02172F932800C0AFDE /* MainViewController.m */,
+				D8656C04172F932800C0AFDE /* FlipsideViewController.h */,
+				D8656C05172F932800C0AFDE /* FlipsideViewController.m */,
+			);
+			name = Controllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -241,6 +280,8 @@
 				D8656BFB172F932800C0AFDE /* Default@2x.png in Resources */,
 				D8656BFD172F932800C0AFDE /* Default-568h@2x.png in Resources */,
 				D8656C00172F932800C0AFDE /* MainStoryboard.storyboard in Resources */,
+				D85EC3E0173118F1009DA21D /* Icon.png in Resources */,
+				D85EC3E2173118FD009DA21D /* Icon@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -279,6 +320,7 @@
 				D8656BF7172F932800C0AFDE /* AppDelegate.m in Sources */,
 				D8656C03172F932800C0AFDE /* MainViewController.m in Sources */,
 				D8656C06172F932800C0AFDE /* FlipsideViewController.m in Sources */,
+				D8656C28172F9A2C00C0AFDE /* Action.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -387,6 +429,8 @@
 		D8656C1F172F932800C0AFDE /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				DEPLOYMENT_POSTPROCESSING = NO;
+				FRAMEWORK_SEARCH_PATHS = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Next Action/Next Action-Prefix.pch";
 				INFOPLIST_FILE = "Next Action/Next Action-Info.plist";
@@ -398,6 +442,8 @@
 		D8656C20172F932800C0AFDE /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				DEPLOYMENT_POSTPROCESSING = NO;
+				FRAMEWORK_SEARCH_PATHS = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Next Action/Next Action-Prefix.pch";
 				INFOPLIST_FILE = "Next Action/Next Action-Info.plist";
@@ -459,6 +505,7 @@
 				D8656C20172F932800C0AFDE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D8656C21172F932800C0AFDE /* Build configuration list for PBXNativeTarget "Next ActionTests" */ = {
 			isa = XCConfigurationList;
@@ -467,6 +514,7 @@
 				D8656C23172F932800C0AFDE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

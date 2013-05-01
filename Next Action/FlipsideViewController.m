@@ -9,7 +9,7 @@
 #import "FlipsideViewController.h"
 
 @interface FlipsideViewController ()
-
+@property (weak, nonatomic) IBOutlet UIWebView *webView;
 @end
 
 @implementation FlipsideViewController
