@@ -32,9 +32,9 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "D8656C0B172F932800C0AFDE"
-               BuildableName = "Next ActionTests.octest"
-               BlueprintName = "Next ActionTests"
+               BlueprintIdentifier = "D883EAA91742729300F7822E"
+               BuildableName = "NextActionApplicationTests.octest"
+               BlueprintName = "NextActionApplicationTests"
                ReferencedContainer = "container:Next Action.xcodeproj">
             </BuildableReference>
          </TestableReference>

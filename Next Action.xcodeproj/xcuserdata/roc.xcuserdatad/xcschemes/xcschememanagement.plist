@@ -9,6 +9,11 @@
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
+		<key>NextActionLogicTest.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
@@ -18,6 +23,21 @@
 			<true/>
 		</dict>
 		<key>D8656C0B172F932800C0AFDE</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>D883EA7917426FB000F7822E</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>D883EA931742706500F7822E</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>D883EAA91742729300F7822E</key>
 		<dict>
 			<key>primary</key>
 			<true/>
