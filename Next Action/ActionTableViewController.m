@@ -12,7 +12,6 @@
 
 @interface ActionTableViewController ()
 @property (strong, nonatomic, readonly) Action *model;
-@property (strong, nonatomic) EKReminder *selectedAction;
 @property (strong, nonatomic) NSArray *lists;
 @end
 
@@ -61,13 +60,6 @@
     return self;
 }
 
-// TODO: Register the event store changed notification
-/*
- [[NSNotificationCenter defaultCenter] addObserver:self
- selector:@selector(eventStoreChanged:)
- name:EKEventStoreChangedNotification
- object:_eventStore];
- */
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -77,6 +69,16 @@
 
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(eventStoreChanged:)
+                                                 name:EKEventStoreChangedNotification
+                                               object:self.model.eventStore];
+}
+
+- (void)eventStoreChanged:(NSNotification *)notification
+{
+    [self.tableView reloadData];
 }
 
 - (void)didReceiveMemoryWarning
@@ -160,12 +162,11 @@
 
 #pragma mark - Table view delegate
 
-//- (void)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath
 - (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     EKCalendar *list = self.lists[indexPath.section];
     NSArray *actions = [self actionsInList:list];
-    self.selectedAction = actions[indexPath.row];
+    self.model.currentAction = actions[indexPath.row];
 
     return indexPath;
 }
@@ -174,8 +175,6 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    CurrentReminderViewController *viewController = [segue destinationViewController];
-    viewController.currentReminder = self.selectedAction;
 }
 
 @end

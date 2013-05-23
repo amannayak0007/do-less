@@ -13,7 +13,6 @@
 
 @implementation Action
 
-// TODO: Init with persistant store
 + (Action *)sharedInstance
 {
     static Action *singleton;
@@ -29,8 +28,6 @@
     }
 }
 
-// TODO: Implement the logic when the access is denied
-// TODO: Implement the logic when there's a error;
 - (EKEventStore *)eventStore
 {
     if (!_eventStore) {
@@ -39,6 +36,7 @@
         dispatch_semaphore_t mutex = dispatch_semaphore_create(0);
 
         // Get user's reminders
+        // TODO: Implement the logic when the access is denied or an error occured
         [eventStore requestAccessToEntityType:EKEntityTypeReminder completion:^(BOOL granted, NSError *error) {
             if (granted && !error) {
                 _eventStore = eventStore;

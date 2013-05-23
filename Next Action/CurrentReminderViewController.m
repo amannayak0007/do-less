@@ -25,10 +25,27 @@
 {
     [super viewDidLoad];
 
-    self.mission.text = self.currentReminder.title;
-    //[self.mission addGestureRecognizer:self.rightSwipeRecognizer];
+    self.mission.text = self.model.currentAction.title;
+
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(eventStoreChanged:)
+                                                 name:EKEventStoreChangedNotification
+                                               object:self.model.eventStore];
+
 }
 
+- (void)eventStoreChanged:(NSNotification *)notification
+{
+    self.model.currentAction = (EKReminder *)[self.model.eventStore calendarItemWithIdentifier:self.model.currentAction.calendarItemIdentifier];
+
+    if (self.model.currentAction && self.model.currentAction.completed == NO) {
+        self.mission.text = self.model.currentAction.title;
+    } else {
+        [self dismissViewControllerAnimated:YES completion:^{}];
+    }
+}
+
+// TODO: Don't use modal segue to switch back and forth.
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([segue.identifier isEqualToString:@"toAccomplished"]) {
@@ -40,11 +57,11 @@
 
 // TODO: Handle error;
 - (IBAction)markReminderCompleted:(UISwipeGestureRecognizer *)sender {
-    self.currentReminder.completed = YES;
+    self.model.currentAction.completed = YES;
 
     NSError *error;
-    if (![self.model.eventStore saveReminder:self.currentReminder
-                                 commit:YES
+    if (![self.model.eventStore saveReminder:self.model.currentAction
+                                      commit:YES
                                        error:&error]) {
        // Handle the error
     }

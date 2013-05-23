@@ -10,5 +10,4 @@
 #import "Action.h"
 
 @interface CurrentReminderViewController : UIViewController
-@property (strong, nonatomic) EKReminder *currentReminder;
 @end
