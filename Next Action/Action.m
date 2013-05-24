@@ -12,6 +12,7 @@
 @end
 
 @implementation Action
+@synthesize currentAction = _currentAction;
 
 + (Action *)sharedInstance
 {
@@ -31,24 +32,7 @@
 - (EKEventStore *)eventStore
 {
     if (!_eventStore) {
-        EKEventStore *eventStore = [[EKEventStore alloc] init];
-
-        dispatch_semaphore_t mutex = dispatch_semaphore_create(0);
-
-        // Get user's reminders
-        // TODO: Implement the logic when the access is denied or an error occured
-        [eventStore requestAccessToEntityType:EKEntityTypeReminder completion:^(BOOL granted, NSError *error) {
-            if (granted && !error) {
-                _eventStore = eventStore;
-            } else if (!granted) {
-                NSLog(@"User did not grant the aceesss to reminders");
-            } else {
-                NSLog(@"%@", [error localizedDescription]);
-            }
-            dispatch_semaphore_signal(mutex);
-        }];
-
-        dispatch_semaphore_wait(mutex, DISPATCH_TIME_FOREVER);
+        _eventStore = [[EKEventStore alloc] init];
     }
 
     return _eventStore;
@@ -86,13 +70,21 @@
 
 - (EKReminder *)currentAction
 {
-    NSString *reminderId = [[NSUserDefaults standardUserDefaults] stringForKey:@"CurrentActionId"];
+    if (!_currentAction) {
+        NSString *reminderId = [[NSUserDefaults standardUserDefaults] stringForKey:@"CurrentActionId"];
 
-    return (EKReminder *)[self.eventStore calendarItemWithIdentifier:reminderId];
+        if (reminderId) {
+            _currentAction = (EKReminder *)[self.eventStore calendarItemWithIdentifier:reminderId];
+        }
+    }
+
+    return _currentAction;
 }
 
 - (void)setCurrentAction:(EKReminder *)currentAction
 {
+    _currentAction = currentAction;
+
     [[NSUserDefaults standardUserDefaults] setObject:currentAction.calendarItemIdentifier forKey:@"CurrentActionId"];
 }
 

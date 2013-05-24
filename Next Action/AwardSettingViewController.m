@@ -28,7 +28,6 @@
     [super viewDidLoad];
 
     self.awardField.delegate = self;
-
     self.awardField.text = self.model.award;
     self.actionNeedLabel.text = [NSString stringWithFormat:@"%d", self.model.actionGoal];
     self.stepper.value = self.model.actionGoal;
@@ -51,7 +50,7 @@
     return YES;
 }
 
-- (IBAction)confirmAward:(UIButton *)sender {
+- (IBAction)unwindToSetNewGoal:(UIStoryboardSegue *)segue {
     self.model.actionCount = 0;
 }
 @end

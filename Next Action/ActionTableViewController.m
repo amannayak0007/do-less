@@ -70,6 +70,30 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 
+    [self.model.eventStore requestAccessToEntityType:EKEntityTypeReminder completion:^(BOOL granted, NSError *error) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (granted && !error) {
+                [self.tableView reloadData];
+            } else if (!granted) {
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"呃……"
+                                                                message:@"Next Action需要访问你的提醒事项才能正常使用"
+                                                               delegate:nil
+                                                      cancelButtonTitle:@"确定"
+                                                      otherButtonTitles:nil];
+                [alert show];
+            } else {
+                NSLog(@"%@", [error localizedDescription]);
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"呃……"
+                                                                message:[error localizedDescription]
+                                                               delegate:nil
+                                                      cancelButtonTitle:@"好吧"
+                                                      otherButtonTitles:nil];
+                [alert show];
+            }
+        });
+    }];
+
+
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(eventStoreChanged:)
                                                  name:EKEventStoreChangedNotification
@@ -177,4 +201,7 @@
 {
 }
 
+- (IBAction)unwindToSelectNextAction:(UIStoryboardSegue *)segue {
+    [self.tableView reloadData];
+}
 @end

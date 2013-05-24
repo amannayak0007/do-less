@@ -45,17 +45,10 @@
     }
 }
 
-// TODO: Don't use modal segue to switch back and forth.
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if ([segue.identifier isEqualToString:@"toAccomplished"]) {
-
-    } else if ([segue.identifier isEqualToString:@"toCongratulation"]) {
-
-    }
 }
 
-// TODO: Handle error;
 - (IBAction)markReminderCompleted:(UISwipeGestureRecognizer *)sender {
     self.model.currentAction.completed = YES;
 
@@ -63,7 +56,14 @@
     if (![self.model.eventStore saveReminder:self.model.currentAction
                                       commit:YES
                                        error:&error]) {
-       // Handle the error
+        NSLog(@"%@", [error localizedDescription]);
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"呃……"
+                                                        message:[error localizedDescription]
+                                                       delegate:nil
+                                              cancelButtonTitle:@"好吧"
+                                              otherButtonTitles:nil];
+        [alert show];
+
     }
 
     if (++self.model.actionCount == self.model.actionGoal) {

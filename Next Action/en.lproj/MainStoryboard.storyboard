@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12D78" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="S7b-6D-2PL">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12D78" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="UeQ-kt-gQw">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
     </dependencies>
@@ -35,8 +35,8 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="mission" destination="n7s-8l-gGv" id="yi7-bZ-rrN"/>
-                        <segue destination="T73-zt-6XK" kind="modal" identifier="toAccomplished" modalTransitionStyle="crossDissolve" id="pUM-JD-Mqo"/>
-                        <segue destination="XQZ-7K-NJQ" kind="modal" identifier="toCongratulation" modalTransitionStyle="crossDissolve" id="4tl-W2-dO6"/>
+                        <segue destination="T73-zt-6XK" kind="push" identifier="toAccomplished" id="pUM-JD-Mqo"/>
+                        <segue destination="XQZ-7K-NJQ" kind="push" identifier="toCongratulation" id="4tl-W2-dO6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4" sceneMemberID="firstResponder"/>
@@ -46,7 +46,7 @@
                     </connections>
                 </swipeGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="-954" y="-370"/>
+            <point key="canvasLocation" x="638" y="599"/>
         </scene>
         <!--Accomplished View Controller-->
         <scene sceneID="Rgk-Y7-XC9">
@@ -90,7 +90,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="S7b-6D-2PL" kind="modal" identifier="fromStatToAwardSetting" modalTransitionStyle="flipHorizontal" id="AlR-2X-M63"/>
+                                    <action selector="changeGoal:" destination="T73-zt-6XK" eventType="touchUpInside" id="vi5-3o-gey"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vhh-Mh-oyl">
@@ -108,12 +108,13 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="gxr-bR-TJj" kind="modal" modalTransitionStyle="flipHorizontal" id="tZo-w0-o3X"/>
+                                    <segue destination="Zp6-yD-Gh5" kind="unwind" unwindAction="unwindToSelectNextAction:" id="Day-vO-Mon"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="fbQ-Ig-gfB" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="1Ar-Va-YBa"/>
                             <constraint firstItem="vhh-Mh-oyl" firstAttribute="top" secondItem="6bf-yG-dXR" secondAttribute="bottom" constant="60" type="user" id="ICC-8S-ZvT"/>
                             <constraint firstItem="6bf-yG-dXR" firstAttribute="top" secondItem="AkE-Cq-qe1" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="J7M-xM-i4J"/>
                             <constraint firstItem="6bf-yG-dXR" firstAttribute="centerX" secondItem="AkE-Cq-qe1" secondAttribute="centerX" type="default" id="U7n-JD-yTA"/>
@@ -121,16 +122,17 @@
                             <constraint firstAttribute="bottom" secondItem="fbQ-Ig-gfB" secondAttribute="bottom" constant="20" symbolic="YES" type="default" id="ZPH-LF-SlI"/>
                             <constraint firstItem="6bf-yG-dXR" firstAttribute="centerX" secondItem="5tN-L8-hje" secondAttribute="centerX" type="default" id="hMm-8o-dIx"/>
                             <constraint firstItem="vhh-Mh-oyl" firstAttribute="centerX" secondItem="6bf-yG-dXR" secondAttribute="centerX" type="default" id="qB7-Zn-pem"/>
-                            <constraint firstAttribute="trailing" secondItem="fbQ-Ig-gfB" secondAttribute="trailing" constant="19" id="ryd-U0-e7q"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="accomplishedLabel" destination="6bf-yG-dXR" id="UbT-kf-pDn"/>
+                        <segue destination="Zp6-yD-Gh5" kind="unwind" identifier="SetNewGoal" unwindAction="unwindToSetNewGoal:" id="6PW-cg-Yj4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OKP-Cz-CkJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="Zp6-yD-Gh5" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="-410" y="-142"/>
+            <point key="canvasLocation" x="1178" y="896"/>
         </scene>
         <!--Congratulation View Controller-->
         <scene sceneID="dhQ-F6-xd2">
@@ -169,7 +171,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="S7b-6D-2PL" kind="modal" modalTransitionStyle="flipHorizontal" id="Ek9-zI-97Y"/>
+                                    <segue destination="7uy-bb-N3I" kind="unwind" identifier="" unwindAction="unwindToSetNewGoal:" id="Efp-9E-xPO"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -189,8 +191,9 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sml-48-LGP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="7uy-bb-N3I" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="-410" y="-879"/>
+            <point key="canvasLocation" x="1178" y="207"/>
         </scene>
         <!--Award Setting View Controller-->
         <scene sceneID="bwm-f0-WYE">
@@ -227,8 +230,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="confirmAward:" destination="S7b-6D-2PL" eventType="touchUpInside" id="Q0u-JV-N89"/>
-                                    <segue destination="gxr-bR-TJj" kind="modal" identifier="toActionTable" modalTransitionStyle="flipHorizontal" id="5Jk-Ly-xnd"/>
+                                    <segue destination="gxr-bR-TJj" kind="push" identifier="" id="5Jk-Ly-xnd"/>
                                 </connections>
                             </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Action Need:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wa1-XS-mKO">
@@ -269,6 +271,7 @@
                             <constraint firstItem="3wv-wf-30W" firstAttribute="centerX" secondItem="bEp-T9-pi4" secondAttribute="centerX" type="default" id="eZp-sW-tCj"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="Dja-tq-ubQ"/>
                     <connections>
                         <outlet property="actionNeedLabel" destination="lhp-sN-xwl" id="GFB-Nk-sRD"/>
                         <outlet property="awardField" destination="bEp-T9-pi4" id="aWb-xD-yV6"/>
@@ -277,7 +280,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pdu-gk-ePp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="240" y="65"/>
+            <point key="canvasLocation" x="-258" y="599"/>
         </scene>
         <!--Action Table View Controller-->
         <scene sceneID="kJ4-b9-m2X">
@@ -305,7 +308,7 @@
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
                                 <connections>
-                                    <segue destination="2" kind="modal" modalTransitionStyle="flipHorizontal" id="sf3-HP-0wL"/>
+                                    <segue destination="2" kind="push" id="sf3-HP-0wL"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -318,7 +321,29 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="r8u-AA-7DC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="663" y="-610"/>
+            <point key="canvasLocation" x="193" y="599"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="X0K-IS-SQT">
+            <objects>
+                <navigationController navigationBarHidden="YES" id="UeQ-kt-gQw" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="GoH-9F-cSV">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="2Gr-YJ-RIo">
+                        <rect key="frame" x="0.0" y="524" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
+                    <connections>
+                        <segue destination="S7b-6D-2PL" kind="relationship" relationship="rootViewController" id="alj-Vj-4zw"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kcF-dK-aCn" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-716" y="599"/>
         </scene>
     </scenes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
@@ -326,8 +351,4 @@
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
-    <inferredMetricsTieBreakers>
-        <segue reference="tZo-w0-o3X"/>
-        <segue reference="AlR-2X-M63"/>
-    </inferredMetricsTieBreakers>
 </document>
