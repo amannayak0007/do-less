@@ -128,7 +128,8 @@
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
     EKCalendar *list = self.lists[section];
-    return list.title;
+    NSArray *actions = [self actionsInList:list];
+    return [actions count] == 0 ? nil : list.title;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
