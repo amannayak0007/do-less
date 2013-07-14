@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:Next Action.xcodeproj">
+      location = "self:Do Less.xcodeproj">
    </FileRef>
 </Workspace>

@@ -1,6 +1,6 @@
 //
 //  AppDelegate.m
-//  Next Action
+//  Do Less
 //
 //  Created by Roc on 13-4-30.
 //  Copyright (c) 2013年 Roc. All rights reserved.
@@ -13,7 +13,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Register the preference defaults early.
-    NSDictionary *appDefaults = @{@"ActionGoal": @10};
+    NSDictionary *appDefaults = @{@"TaskGoal": @10};
     [[NSUserDefaults standardUserDefaults] registerDefaults:appDefaults];
 
     return YES;

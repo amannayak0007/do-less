@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "D8656BE2172F932800C0AFDE"
-               BuildableName = "Next Action.app"
-               BlueprintName = "Next Action"
-               ReferencedContainer = "container:Next Action.xcodeproj">
+               BuildableName = "Do Less.app"
+               BlueprintName = "Do Less"
+               ReferencedContainer = "container:Do Less.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -35,7 +35,7 @@
                BlueprintIdentifier = "D883EAA91742729300F7822E"
                BuildableName = "NextActionApplicationTests.octest"
                BlueprintName = "NextActionApplicationTests"
-               ReferencedContainer = "container:Next Action.xcodeproj">
+               ReferencedContainer = "container:Do Less.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -43,9 +43,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "D8656BE2172F932800C0AFDE"
-            BuildableName = "Next Action.app"
-            BlueprintName = "Next Action"
-            ReferencedContainer = "container:Next Action.xcodeproj">
+            BuildableName = "Do Less.app"
+            BlueprintName = "Do Less"
+            ReferencedContainer = "container:Do Less.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </TestAction>
@@ -62,9 +62,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "D8656BE2172F932800C0AFDE"
-            BuildableName = "Next Action.app"
-            BlueprintName = "Next Action"
-            ReferencedContainer = "container:Next Action.xcodeproj">
+            BuildableName = "Do Less.app"
+            BlueprintName = "Do Less"
+            ReferencedContainer = "container:Do Less.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -80,9 +80,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "D8656BE2172F932800C0AFDE"
-            BuildableName = "Next Action.app"
-            BlueprintName = "Next Action"
-            ReferencedContainer = "container:Next Action.xcodeproj">
+            BuildableName = "Do Less.app"
+            BlueprintName = "Do Less"
+            ReferencedContainer = "container:Do Less.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

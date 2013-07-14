@@ -1,13 +1,12 @@
 //
 //  CurrentReminderController.h
-//  Next Action
+//  Do Less
 //
 //  Created by Roc on 13-4-30.
 //  Copyright (c) 2013年 Roc. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
-#import "Action.h"
 
-@interface CurrentReminderViewController : UIViewController
+@interface TodayViewController : UIViewController
 @end

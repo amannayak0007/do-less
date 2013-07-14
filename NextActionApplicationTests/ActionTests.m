@@ -1,25 +1,25 @@
 //
-//  NextActionApplicationTests.m
-//  NextActionApplicationTests
+//  DoLessApplicationTests.m
+//  DoLessApplicationTests
 //
 //  Created by Roc on 13-5-14.
 //  Copyright (c) 2013年 Roc. All rights reserved.
 //
 
-#import "ActionTests.h"
-#import "Action.h"
+#import "TaskTests.h"
+#import "Task.h"
 
-@interface ActionTests()
-@property (strong, nonatomic) Action *model;
+@interface TaskTests()
+@property (strong, nonatomic) Task *model;
 @end
 
-@implementation ActionTests
+@implementation TaskTests
 
 - (void)setUp
 {
     [super setUp];
 
-    self.model = [Action sharedInstance];
+    self.model = [Task sharedInstance];
 }
 
 - (void)tearDown
@@ -29,9 +29,9 @@
     [super tearDown];
 }
 
-- (void)testActionGoal
+- (void)testTaskGoal
 {
-    STAssertEquals(self.model.actionGoal, 10u, @"The default value of actionGoal doesn't equal 10.");
+    STAssertEquals(self.model.taskGoal, 10u, @"The default value of taskGoal doesn't equal 10.");
 }
 
 @end
