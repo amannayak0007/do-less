@@ -9,6 +9,10 @@
 #import "Task.h"
 
 @interface Task()
+
+// The event store
+@property (strong, nonatomic) EKEventStore *eventStore;
+
 @end
 
 @implementation Task
@@ -65,9 +69,10 @@
 - (id)taskForKey:(NSString *)key
 {
     NSString *reminderId = [[NSUserDefaults standardUserDefaults] stringForKey:key];
+    EKReminder *task = (EKReminder *)[self.eventStore calendarItemWithIdentifier:reminderId];
 
-    if (reminderId) {
-        return (EKReminder *)[self.eventStore calendarItemWithIdentifier:reminderId];
+    if (task) {
+        return task;
     } else {
         return [NSNull null];
     }
@@ -106,9 +111,8 @@
 //}
 
 // Mark task as completed
-- (BOOL)markTask:(EKReminder *)task as:(BOOL)isCompleted error:(NSError **)error
+- (BOOL)saveTask:(EKReminder *)task error:(NSError **)error
 {
-    task.completed = isCompleted;
     return [self.eventStore saveReminder:task commit:YES error:error];
 }
 
@@ -140,4 +144,17 @@
     return tasks;
 }
 
+- (void)addObserver:(id)notificationObserver selector:(SEL)notificationSelector
+{
+    [[NSNotificationCenter defaultCenter] addObserver:notificationObserver
+                                             selector:notificationSelector
+                                                 name:EKEventStoreChangedNotification
+                                               object:self.eventStore];
+
+}
+
+- (void)requestAccessWithCompletion:(EKEventStoreRequestAccessCompletionHandler)completion
+{
+    [self.eventStore requestAccessToEntityType:EKEntityTypeReminder completion:completion];
+}
 @end

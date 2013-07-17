@@ -27,6 +27,8 @@
 		D883EAAD1742729300F7822E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8656BE8172F932800C0AFDE /* Foundation.framework */; };
 		D883EAB31742729300F7822E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D883EAB11742729300F7822E /* InfoPlist.strings */; };
 		D883EAB61742729300F7822E /* ActionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D883EAB51742729300F7822E /* ActionTests.m */; };
+		D8AC75CC1796B6D900883487 /* TaskCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D8AC75CB1796B6D900883487 /* TaskCell.m */; };
+		D8AC75CF1796CE1200883487 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8AC75CE1796CE1200883487 /* QuartzCore.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,6 +71,10 @@
 		D883EAB41742729300F7822E /* ActionTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = ActionTests.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		D883EAB51742729300F7822E /* ActionTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = ActionTests.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		D883EAB71742729300F7822E /* ApplicationTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = "ApplicationTests-Prefix.pch"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		D8AC75421795575A00883487 /* Icon-120@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-120@2x.png"; path = "../Icon-120@2x.png"; sourceTree = "<group>"; };
+		D8AC75CA1796B6D900883487 /* TaskCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TaskCell.h; path = "Next Action/TaskCell.h"; sourceTree = "<group>"; };
+		D8AC75CB1796B6D900883487 /* TaskCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TaskCell.m; path = "Next Action/TaskCell.m"; sourceTree = "<group>"; };
+		D8AC75CE1796CE1200883487 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,6 +82,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D8AC75CF1796CE1200883487 /* QuartzCore.framework in Frameworks */,
 				D8656C25172F97BD00C0AFDE /* EventKit.framework in Frameworks */,
 				D8656BE7172F932800C0AFDE /* UIKit.framework in Frameworks */,
 				D8656BE9172F932800C0AFDE /* Foundation.framework in Frameworks */,
@@ -98,9 +105,10 @@
 		D8656BDA172F932700C0AFDE = {
 			isa = PBXGroup;
 			children = (
+				D8656BFE172F932800C0AFDE /* MainStoryboard.storyboard */,
+				D8AC75CD1796B6EC00883487 /* Views */,
 				D8656C29172F9A3D00C0AFDE /* Models */,
 				D8656C2A172F9A4700C0AFDE /* Controllers */,
-				D8656BFE172F932800C0AFDE /* MainStoryboard.storyboard */,
 				D8656BED172F932800C0AFDE /* Supporting Files */,
 				D883EAAE1742729300F7822E /* ApplicationTests */,
 				D8656BE5172F932800C0AFDE /* Frameworks */,
@@ -120,6 +128,7 @@
 		D8656BE5172F932800C0AFDE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D8AC75CE1796CE1200883487 /* QuartzCore.framework */,
 				D8656C24172F97BD00C0AFDE /* EventKit.framework */,
 				D8656BE6172F932800C0AFDE /* UIKit.framework */,
 				D8656BE8172F932800C0AFDE /* Foundation.framework */,
@@ -138,6 +147,7 @@
 				D8656BFA172F932800C0AFDE /* Default@2x.png */,
 				D8656BEE172F932800C0AFDE /* Do Less-Info.plist */,
 				D8656BF4172F932800C0AFDE /* Do Less-Prefix.pch */,
+				D8AC75421795575A00883487 /* Icon-120@2x.png */,
 				D85EC3DF173118F1009DA21D /* Icon.png */,
 				D85EC3E1173118FD009DA21D /* Icon@2x.png */,
 				D8656BEF172F932800C0AFDE /* InfoPlist.strings */,
@@ -188,6 +198,15 @@
 				D883EAB71742729300F7822E /* ApplicationTests-Prefix.pch */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		D8AC75CD1796B6EC00883487 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				D8AC75CA1796B6D900883487 /* TaskCell.h */,
+				D8AC75CB1796B6D900883487 /* TaskCell.m */,
+			);
+			name = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -307,6 +326,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D8AC75CC1796B6D900883487 /* TaskCell.m in Sources */,
 				D8656BF3172F932800C0AFDE /* main.m in Sources */,
 				D8656BF7172F932800C0AFDE /* AppDelegate.m in Sources */,
 				D8656C03172F932800C0AFDE /* TodayViewController.m in Sources */,
