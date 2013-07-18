@@ -7,20 +7,22 @@
 //
 
 #import "Task.h"
-#import "TaskTableViewController.h"
-#import "TodayViewController.h"
+#import "TaskSelectionTableViewController.h"
 
-@interface TaskTableViewController ()
+@interface TaskSelectionTableViewController ()
 
-@property (strong, nonatomic, readonly) Task *model;
+@property (strong, nonatomic) Task *model;
 
 @end
 
-@implementation TaskTableViewController
+@implementation TaskSelectionTableViewController
 
 - (Task *)model
 {
-    return [Task sharedInstance];
+    if (!_model) {
+        _model = [[Task alloc] init];
+    }
+    return _model;
 }
 
 - (void)viewDidLoad
@@ -110,15 +112,17 @@
     }
 
     // Show the checkmark if the task has been selected
-    if ([self.model.todayTasks indexOfObject:task] == NSNotFound) {
+    if ([self.todayTasks indexOfObject:task] == NSNotFound) {
         cell.accessoryType = UITableViewCellAccessoryNone;
     } else {
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
     }
 
-    if ([task isEqual:self.model.todayTasks[self.currentTaskTag]]) {
+    if ([task isEqual:self.replacedTask]) {
         cell.backgroundView = [[UIView alloc] initWithFrame:cell.frame];
         cell.backgroundView.backgroundColor = [UIColor redColor];
+    } else {
+        cell.backgroundView = nil;
     }
 
     return cell;
@@ -128,27 +132,9 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-//    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-//    if (cell.accessoryType == UITableViewCellAccessoryCheckmark) {
-//        [tableView deselectRowAtIndexPath:indexPath animated:YES];
-//        return;
-//    }
-    
-//    [tableView deselectRowAtIndexPath:indexPath animated:NO];
-
     EKCalendar *list = self.model.lists[indexPath.section];
     NSArray *tasks = [self.model tasksInList:list];
-    EKReminder *selectedTask = tasks[indexPath.row];
-
-    NSMutableArray *mutalbeTodayTasks = [self.model.todayTasks mutableCopy];
-
-    NSUInteger index = [mutalbeTodayTasks indexOfObject:selectedTask];
-    if (index != NSNotFound) {
-        mutalbeTodayTasks[index] = mutalbeTodayTasks[self.currentTaskTag];
-    }
-    mutalbeTodayTasks[self.currentTaskTag] = selectedTask;
-
-    self.model.todayTasks = mutalbeTodayTasks;
+    self.selectedTask = tasks[indexPath.row];
 
     [self performSegueWithIdentifier:@"BackToTasksToday" sender:self];
 }

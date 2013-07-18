@@ -12,10 +12,6 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    // Register the preference defaults early.
-    NSDictionary *appDefaults = @{@"TaskGoal": @10};
-    [[NSUserDefaults standardUserDefaults] registerDefaults:appDefaults];
-
     return YES;
 }
 							

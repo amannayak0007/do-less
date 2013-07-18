@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		D850080C17451976008AE1D4 /* TaskTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D850080B17451976008AE1D4 /* TaskTableViewController.m */; };
+		D850080C17451976008AE1D4 /* TaskSelectionTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D850080B17451976008AE1D4 /* TaskSelectionTableViewController.m */; };
 		D85EC3E0173118F1009DA21D /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = D85EC3DF173118F1009DA21D /* Icon.png */; };
 		D85EC3E2173118FD009DA21D /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D85EC3E1173118FD009DA21D /* Icon@2x.png */; };
 		D8656BE7172F932800C0AFDE /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8656BE6172F932800C0AFDE /* UIKit.framework */; };
@@ -42,8 +42,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		D850080A17451976008AE1D4 /* TaskTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = TaskTableViewController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
-		D850080B17451976008AE1D4 /* TaskTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = TaskTableViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		D850080A17451976008AE1D4 /* TaskSelectionTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = TaskSelectionTableViewController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		D850080B17451976008AE1D4 /* TaskSelectionTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = TaskSelectionTableViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		D85EC3DF173118F1009DA21D /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Icon.png; path = ../Icon.png; sourceTree = "<group>"; };
 		D85EC3E1173118FD009DA21D /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon@2x.png"; path = "../Icon@2x.png"; sourceTree = "<group>"; };
 		D8656BE3172F932800C0AFDE /* Do Less.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Do Less.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -106,8 +106,8 @@
 			isa = PBXGroup;
 			children = (
 				D8656BFE172F932800C0AFDE /* MainStoryboard.storyboard */,
-				D8AC75CD1796B6EC00883487 /* Views */,
 				D8656C29172F9A3D00C0AFDE /* Models */,
+				D8AC75CD1796B6EC00883487 /* Views */,
 				D8656C2A172F9A4700C0AFDE /* Controllers */,
 				D8656BED172F932800C0AFDE /* Supporting Files */,
 				D883EAAE1742729300F7822E /* ApplicationTests */,
@@ -172,8 +172,8 @@
 			children = (
 				D8656C01172F932800C0AFDE /* TodayViewController.h */,
 				D8656C02172F932800C0AFDE /* TodayViewController.m */,
-				D850080A17451976008AE1D4 /* TaskTableViewController.h */,
-				D850080B17451976008AE1D4 /* TaskTableViewController.m */,
+				D850080A17451976008AE1D4 /* TaskSelectionTableViewController.h */,
+				D850080B17451976008AE1D4 /* TaskSelectionTableViewController.m */,
 			);
 			name = Controllers;
 			path = "Next Action";
@@ -331,7 +331,7 @@
 				D8656BF7172F932800C0AFDE /* AppDelegate.m in Sources */,
 				D8656C03172F932800C0AFDE /* TodayViewController.m in Sources */,
 				D8656C28172F9A2C00C0AFDE /* Task.m in Sources */,
-				D850080C17451976008AE1D4 /* TaskTableViewController.m in Sources */,
+				D850080C17451976008AE1D4 /* TaskSelectionTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

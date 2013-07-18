@@ -82,19 +82,19 @@
     self.delettingLayer.position = (CGPoint){0, self.textLabel.layer.bounds.size.height/2};
     [self.delettingLayer addAnimation:deletingAnimation forKey:nil];
 
-    [UIView animateWithDuration:0.5
-                          delay:0
-                        options:UIViewAnimationOptionCurveEaseInOut
-                     animations:^{
-                         if (completed) {
-                             self.contentView.backgroundColor = [UIColor greenColor];
-                         } else {
-                             self.contentView.backgroundColor = [UIColor redColor];
-                         }
-                     }
-                     completion:^(BOOL finished){
-                     }
-     ];
+//    [UIView animateWithDuration:0.5
+//                          delay:0
+//                        options:UIViewAnimationOptionCurveEaseInOut
+//                     animations:^{
+//                         if (completed) {
+//                             self.contentView.backgroundColor = [UIColor greenColor];
+//                         } else {
+//                             self.contentView.backgroundColor = [UIColor redColor];
+//                         }
+//                     }
+//                     completion:^(BOOL finished){
+//                     }
+//     ];
 
     _completed = completed;
 }

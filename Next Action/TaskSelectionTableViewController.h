@@ -7,9 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <EventKit/EventKit.h>
 
-@interface TaskTableViewController : UITableViewController
+@interface TaskSelectionTableViewController : UITableViewController
 
-@property NSInteger currentTaskTag;
+@property (strong, nonatomic) EKReminder *replacedTask;
+@property (strong, nonatomic) EKReminder *selectedTask;
+@property (strong, nonatomic) NSArray *todayTasks;
 
 @end

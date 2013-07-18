@@ -16,22 +16,21 @@
 // Task lists
 @property (strong, nonatomic, readonly) NSArray *lists;
 
-// Tasks for today
-@property (strong, nonatomic) NSArray *todayTasks;
-
-// Get singleton
-+ (Task *)sharedInstance;
-
-// Mark the reminder completed
+// Save task
 - (BOOL)saveTask:(EKReminder *)task error:(NSError **)error;
 
+// Get all the tasks in the given list
 - (NSArray *)tasksInList:(EKCalendar *)list;
-
-// Completed task can not be changed until all the other tasks are completed
-- (BOOL)canTaskBeChangedForIndex:(NSInteger)index;
 
 // Register notification
 - (void)addObserver:(id)notificationObserver selector:(SEL)notificationSelector;
 
+// Request access to user's reminders
 - (void)requestAccessWithCompletion:(EKEventStoreRequestAccessCompletionHandler)completion;
+
+// Load a task of today
+- (id)loadTodayTaskWithKey:(NSString *)key;
+
+// Save a task of today
+- (void)saveTodayTask:(EKReminder *)task withKey:(NSString *)key;
 @end

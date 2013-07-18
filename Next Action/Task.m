@@ -11,30 +11,16 @@
 @interface Task()
 
 // The event store
-@property (strong, nonatomic) EKEventStore *eventStore;
+@property (strong, nonatomic, readonly) EKEventStore *eventStore;
 
 @end
 
 @implementation Task
-@synthesize todayTasks = _todayTasks;
-
-+ (Task *)sharedInstance
-{
-    static Task *singleton;
-
-    @synchronized(self)
-    {
-        if(!singleton)
-        {
-            singleton = [[Task alloc] init];
-        }
-
-        return singleton;
-    }
-}
 
 - (EKEventStore *)eventStore
 {
+    static EKEventStore *_eventStore;
+
     if (!_eventStore) {
         _eventStore = [[EKEventStore alloc] init];
     }
@@ -42,31 +28,13 @@
     return _eventStore;
 }
 
-// TODO: Try to return mutable array here.
-- (NSArray *)todayTasks
+- (NSArray *)lists
 {
-    if (!_todayTasks) {
-        _todayTasks = @[
-                        [self taskForKey:@"Task1"],
-                        [self taskForKey:@"Task2"],
-                        [self taskForKey:@"Task3"],
-                        ];
-    }
-
-    return _todayTasks;
+    return [self.eventStore calendarsForEntityType:EKEntityTypeReminder];
 }
 
-- (void)setTodayTasks:(NSArray *)todayTasks
-{
-    _todayTasks = todayTasks;
-    [self setTask:_todayTasks[0] forKey:@"Task1"];
-    [self setTask:_todayTasks[1] forKey:@"Task2"];
-    [self setTask:_todayTasks[2] forKey:@"Task3"];
-}
-
-// Load task
 // TODO: Only save & load tasks via UserDefaults when it is the right time, e.g. App exits
-- (id)taskForKey:(NSString *)key
+- (id)loadTodayTaskWithKey:(NSString *)key
 {
     NSString *reminderId = [[NSUserDefaults standardUserDefaults] stringForKey:key];
     EKReminder *task = (EKReminder *)[self.eventStore calendarItemWithIdentifier:reminderId];
@@ -78,8 +46,7 @@
     }
 }
 
-// Save task
-- (void)setTask:(EKReminder *)task forKey:(NSString *)key
+- (void)saveTodayTask:(EKReminder *)task withKey:(NSString *)key
 {
     if ((id)task == [NSNull null]) {
         [[NSUserDefaults standardUserDefaults] removeObjectForKey:key];
@@ -89,40 +56,12 @@
 
 }
 
-- (BOOL)canTaskBeChangedForIndex:(NSInteger)index
-{
-    EKReminder *task = self.todayTasks[index];
-    if ((id)task == [NSNull null] || task.isCompleted == NO) {
-        return YES;
-    } else {
-        return NO;
-    }
-}
-
-//- (BOOL)areTodayTasksAllCompleted
-//{
-//    for (EKReminder *task in self.todayTasks) {
-//        if ((id)task != [NSNull null] && task.isCompleted == NO) {
-//            return NO;
-//        }
-//    }
-//
-//    return YES;
-//}
-
-// Mark task as completed
+// TODO: Commit the change to the event store.
 - (BOOL)saveTask:(EKReminder *)task error:(NSError **)error
 {
-    return [self.eventStore saveReminder:task commit:YES error:error];
+    return [self.eventStore saveReminder:task commit:NO error:error];
 }
 
-// Get task lists
-- (NSArray *)lists
-{
-    return [self.eventStore calendarsForEntityType:EKEntityTypeReminder];
-}
-
-// Get all the tasks in the given list
 - (NSArray *)tasksInList:(EKCalendar *)list
 {
     __block NSArray *tasks;
@@ -134,10 +73,10 @@
                                                                                              calendars:@[list]];
 
     [self.eventStore fetchRemindersMatchingPredicate:predicate
-                                                completion:^(NSArray *reminders) {
-                                                    tasks = reminders;
-                                                    dispatch_semaphore_signal(mutex);
-                                                }];
+                                          completion:^(NSArray *reminders) {
+                                              tasks = reminders;
+                                              dispatch_semaphore_signal(mutex);
+                                          }];
 
     dispatch_semaphore_wait(mutex, DISPATCH_TIME_FOREVER);
     
