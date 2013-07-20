@@ -75,7 +75,6 @@
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qMB-XJ-9dk">
                                             <rect key="frame" x="10" y="0.0" width="302" height="43"/>
-                                            <autoresizingMask key="autoresizingMask"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -89,8 +88,6 @@
                         <connections>
                             <outlet property="dataSource" destination="M57-bU-R8k" id="e2u-SO-z2i"/>
                             <outlet property="delegate" destination="M57-bU-R8k" id="aLi-PR-hWb"/>
-                            <outletCollection property="gestureRecognizers" destination="uO3-hA-YCc" appends="YES" id="WkS-11-g1b"/>
-                            <outletCollection property="gestureRecognizers" destination="Glg-Vp-YVF" appends="YES" id="PpM-xr-Uif"/>
                             <outletCollection property="gestureRecognizers" destination="hyE-MZ-Jqd" appends="YES" id="Rmp-rh-fre"/>
                         </connections>
                     </tableView>
@@ -101,16 +98,6 @@
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cpp-aV-mhH" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <swipeGestureRecognizer enabled="NO" direction="right" id="uO3-hA-YCc" userLabel="Right Swipe">
-                    <connections>
-                        <action selector="swipeRecognized:" destination="M57-bU-R8k" id="TpB-Ju-OKP"/>
-                    </connections>
-                </swipeGestureRecognizer>
-                <swipeGestureRecognizer enabled="NO" direction="left" id="Glg-Vp-YVF" userLabel="Left Swipe">
-                    <connections>
-                        <action selector="swipeRecognized:" destination="M57-bU-R8k" id="9zw-Li-bNL"/>
-                    </connections>
-                </swipeGestureRecognizer>
                 <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="hyE-MZ-Jqd">
                     <connections>
                         <action selector="toggleCompleted:" destination="M57-bU-R8k" id="hCB-rl-aB7"/>

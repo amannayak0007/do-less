@@ -33,7 +33,6 @@
     return [self.eventStore calendarsForEntityType:EKEntityTypeReminder];
 }
 
-// TODO: Only save & load tasks via UserDefaults when it is the right time, e.g. App exits
 - (id)loadTodayTaskWithKey:(NSString *)key
 {
     NSString *reminderId = [[NSUserDefaults standardUserDefaults] stringForKey:key];
@@ -56,10 +55,9 @@
 
 }
 
-// TODO: Commit the change to the event store.
 - (BOOL)saveTask:(EKReminder *)task error:(NSError **)error
 {
-    return [self.eventStore saveReminder:task commit:NO error:error];
+    return [self.eventStore saveReminder:task commit:YES error:error];
 }
 
 - (NSArray *)tasksInList:(EKCalendar *)list

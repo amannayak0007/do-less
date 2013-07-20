@@ -34,14 +34,13 @@
     }
 
     if (completed) {
-        [UIView animateWithDuration:0.5 animations:^{
-            // TODO: Be responsive
+        [UIView animateWithDuration:0.3 animations:^{
             self.stamp.alpha = 1.0;
             self.stamp.transform = CGAffineTransformIdentity;
             self.stamp.frame = CGRectMake(0, 0, self.bounds.size.width, self.bounds.size.height);
         }];
     } else {
-        [UIView animateWithDuration:0.5 animations:^{
+        [UIView animateWithDuration:0.3 animations:^{
             self.stamp.alpha = 0.0;
             self.stamp.transform = CGAffineTransformMakeScale(1.5, 1.5);
         }];

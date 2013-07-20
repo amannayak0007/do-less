@@ -198,38 +198,6 @@
     }
 }
 
-- (IBAction)swipeRecognized:(UISwipeGestureRecognizer *)sender
-{
-    if (sender.state == UIGestureRecognizerStateRecognized) {
-        CGPoint swipeLocation = [sender locationInView:self.tableView];
-        NSIndexPath *swipedIndexPath = [self.tableView indexPathForRowAtPoint:swipeLocation];
-        TaskCell* swipedCell = (TaskCell *)[self.tableView cellForRowAtIndexPath:swipedIndexPath];
-        EKReminder *task = self.todayTasks[swipedIndexPath.row];
-
-        if ((id)task == [NSNull null]) {
-            return;
-        }
-
-        if (sender.direction == UISwipeGestureRecognizerDirectionLeft) {
-            task.completed = NO;
-        } else if (sender.direction == UISwipeGestureRecognizerDirectionRight) {
-            task.completed = YES;
-        }
-        [swipedCell setCompleted:task.completed animated:YES];
-
-        NSError *error;
-        if (![self.model saveTask:task error:&error]) {
-            NSLog(@"%@", [error localizedDescription]);
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Eh..."
-                                                            message:[error localizedDescription]
-                                                           delegate:nil
-                                                  cancelButtonTitle:@"Fine"
-                                                  otherButtonTitles:nil];
-            [alert show];
-        }
-    }
-}
-
 #pragma mark - Table view data source
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
