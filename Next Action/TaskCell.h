@@ -10,4 +10,5 @@
 
 @interface TaskCell : UITableViewCell
 @property (nonatomic, getter = isCompleted) BOOL completed;
+- (void)setCompleted:(BOOL)completed animated:(BOOL)animated;
 @end

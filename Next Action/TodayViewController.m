@@ -16,12 +16,15 @@
 @property (strong, nonatomic) Task *model;
 
 // Tasks for today
-@property (strong, nonatomic) NSArray *todayTasks;
+@property (strong, nonatomic) NSMutableArray *todayTasks;
+@property NSUInteger replacedIndex;
 
 @end
 
 @implementation TodayViewController
 @synthesize todayTasks = _todayTasks;
+
+#pragma mark - Getter & Setter
 
 - (Task *)model
 {
@@ -31,26 +34,38 @@
     return _model;
 }
 
-// TODO: Try to return mutable array here.
-- (NSArray *)todayTasks
+- (NSMutableArray *)todayTasks
 {
     if (!_todayTasks) {
-        _todayTasks = @[
+        _todayTasks = [@[
                         [self.model loadTodayTaskWithKey:@"Task1"],
                         [self.model loadTodayTaskWithKey:@"Task2"],
                         [self.model loadTodayTaskWithKey:@"Task3"],
-                        ];
+                        ] mutableCopy];
     }
 
     return _todayTasks;
 }
 
-- (void)setTodayTasks:(NSArray *)todayTasks
+#pragma mark - View Controller
+
+- (void)setTodayTasks:(NSMutableArray *)todayTasks
 {
     _todayTasks = todayTasks;
     [self.model saveTodayTask:_todayTasks[0] withKey:@"Task1"];
     [self.model saveTodayTask:_todayTasks[1] withKey:@"Task2"];
     [self.model saveTodayTask:_todayTasks[2] withKey:@"Task3"];
+}
+
+- (BOOL)canBecomeFirstResponder
+{
+    return YES;
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [self becomeFirstResponder];
 }
 
 - (void)viewDidLoad
@@ -83,6 +98,32 @@
     [self.model addObserver:self selector:@selector(eventStoreChanged:)];
 }
 
+- (void)motionEnded:(UIEventSubtype)motion withEvent:(UIEvent *)event
+{
+    // User was shaking the device.
+    if (motion == UIEventSubtypeMotionShake)
+    {
+        NSMutableArray *uncompletedTasks = [[NSMutableArray alloc] init];
+
+        for (NSUInteger i=0; i<[self.todayTasks count]; i++) {
+            EKReminder *task = self.todayTasks[i];
+            if ((id)task != [NSNull null] && task.completed == NO) {
+                [uncompletedTasks addObject:[NSNumber numberWithUnsignedInteger:i]];
+            }
+        }
+
+        if ([uncompletedTasks count] == 0) {
+            self.todayTasks = [@[[NSNull null], [NSNull null],[NSNull null]] mutableCopy];
+        } else {
+            for (NSNumber *j in uncompletedTasks) {
+                self.todayTasks[[j unsignedIntegerValue]] = [NSNull null];
+            }
+        }
+
+        [self.tableView reloadData];
+    }
+}
+
 -(void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
 {
     if (   self.interfaceOrientation == UIInterfaceOrientationLandscapeLeft
@@ -107,41 +148,30 @@
     }
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
-
-    EKReminder *task = self.todayTasks[indexPath.row];
-
-    if ((id)task == [NSNull null] || task.isCompleted == NO) {
-        [self performSegueWithIdentifier:@"ToTaskTable" sender:task];
-    }
-}
+# pragma mark - Actions
 
 // Refresh tasks display after unwind from task selection
-- (IBAction)didSelectNewTask:(UIStoryboardSegue *)segue {
+- (IBAction)didSelectNewTask:(UIStoryboardSegue *)segue
+{
     TaskSelectionTableViewController *taskSelectionTVC = segue.sourceViewController;
 
     if ([taskSelectionTVC.selectedTask isEqual:taskSelectionTVC.replacedTask]) {
         return;
     }
 
-    NSUInteger replacedIndex = [self.todayTasks indexOfObject:taskSelectionTVC.replacedTask];
-    NSMutableArray *mutalbeTodayTasks = [self.todayTasks mutableCopy];
-    NSUInteger index = [mutalbeTodayTasks indexOfObject:taskSelectionTVC.selectedTask];
+    NSUInteger index = [self.todayTasks indexOfObject:taskSelectionTVC.selectedTask];
 
     if (index != NSNotFound) {
-        mutalbeTodayTasks[index] = taskSelectionTVC.replacedTask;
+        self.todayTasks[index] = taskSelectionTVC.replacedTask;
     }
 
-    mutalbeTodayTasks[replacedIndex] = taskSelectionTVC.selectedTask;
-
-    self.todayTasks = mutalbeTodayTasks;
+    self.todayTasks[self.replacedIndex] = taskSelectionTVC.selectedTask;
 
     [self.tableView reloadData];
 }
 
-- (IBAction)toggleCompleted:(UILongPressGestureRecognizer *)sender {
+- (IBAction)toggleCompleted:(UILongPressGestureRecognizer *)sender
+{
     if (sender.state == UIGestureRecognizerStateBegan) {
         CGPoint swipeLocation = [sender locationInView:self.tableView];
         NSIndexPath *swipedIndexPath = [self.tableView indexPathForRowAtPoint:swipeLocation];
@@ -152,8 +182,8 @@
             return;
         }
 
-        swipedCell.completed = !swipedCell.isCompleted;
-        task.completed = swipedCell.isCompleted;
+        task.completed = !task.isCompleted;
+        [swipedCell setCompleted:task.completed animated:YES];
 
         NSError *error;
         if (![self.model saveTask:task error:&error]) {
@@ -168,7 +198,8 @@
     }
 }
 
-- (IBAction)swipeRecognized:(UISwipeGestureRecognizer *)sender {
+- (IBAction)swipeRecognized:(UISwipeGestureRecognizer *)sender
+{
     if (sender.state == UIGestureRecognizerStateRecognized) {
         CGPoint swipeLocation = [sender locationInView:self.tableView];
         NSIndexPath *swipedIndexPath = [self.tableView indexPathForRowAtPoint:swipeLocation];
@@ -180,12 +211,11 @@
         }
 
         if (sender.direction == UISwipeGestureRecognizerDirectionLeft) {
-            swipedCell.completed = NO;
             task.completed = NO;
         } else if (sender.direction == UISwipeGestureRecognizerDirectionRight) {
-            swipedCell.completed = YES;
             task.completed = YES;
         }
+        [swipedCell setCompleted:task.completed animated:YES];
 
         NSError *error;
         if (![self.model saveTask:task error:&error]) {
@@ -233,6 +263,20 @@
     }
 
     return cell;
+}
+
+#pragma mark - Table view delegate
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+
+    EKReminder *task = self.todayTasks[indexPath.row];
+
+    if ((id)task == [NSNull null] || task.isCompleted == NO) {
+        self.replacedIndex = indexPath.row;
+        [self performSegueWithIdentifier:@"ToTaskTable" sender:task];
+    }
 }
 
 @end

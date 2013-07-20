@@ -11,90 +11,55 @@
 #define DELETING_LINE_WIDTH 2
 
 @interface TaskCell()
-@property (strong, nonatomic) CALayer *delettingLayer;
+@property (strong, nonatomic) UIImageView *stamp;
 @end
 
 @implementation TaskCell
 
-- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
+- (UIImageView *)stamp
 {
-    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
-    if (self) {
-        // Initialization code
+    if (!_stamp) {
+        _stamp = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Stamp.png"]];
+        _stamp.autoresizingMask = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth;
+        [self addSubview:_stamp];
     }
-    return self;
+    return _stamp;
 }
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated
+- (void)setCompleted:(BOOL)completed animated:(BOOL)animated
 {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
-}
-
--(CALayer *)delettingLayer
-{
-    if (!_delettingLayer) {
-        _delettingLayer = [[CALayer alloc] init];
-
-        _delettingLayer.anchorPoint = (CGPoint){0, 0.5};
-        _delettingLayer.backgroundColor = self.textLabel.textColor.CGColor;
-
-        [self.textLabel.layer addSublayer:_delettingLayer];
+    if (!animated) {
+        self.completed = completed;
+        return;
     }
 
-    return _delettingLayer;
+    if (completed) {
+        [UIView animateWithDuration:0.5 animations:^{
+            // TODO: Be responsive
+            self.stamp.alpha = 1.0;
+            self.stamp.transform = CGAffineTransformIdentity;
+            self.stamp.frame = CGRectMake(0, 0, self.bounds.size.width, self.bounds.size.height);
+        }];
+    } else {
+        [UIView animateWithDuration:0.5 animations:^{
+            self.stamp.alpha = 0.0;
+            self.stamp.transform = CGAffineTransformMakeScale(1.5, 1.5);
+        }];
+    }
+
+    _completed = completed;
 }
 
 - (void)setCompleted:(BOOL)completed
 {
-    CABasicAnimation *deletingAnimation = [CABasicAnimation animationWithKeyPath:@"bounds"];
-    deletingAnimation.duration = 0.5;
-    deletingAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-
-    CGRect empty = {
-        .origin = self.textLabel.layer.bounds.origin,
-        .size = (CGSize) {
-            .width = 0,
-            .height = DELETING_LINE_WIDTH,
-        }
-    };
-    CGRect full = {
-        .origin = self.textLabel.layer.bounds.origin,
-        .size = (CGSize) {
-            .width = self.textLabel.layer.bounds.size.width,
-            .height = DELETING_LINE_WIDTH,
-        }
-    };
-
     if (completed) {
-        deletingAnimation.fromValue = [NSValue valueWithCGRect:empty];
-        deletingAnimation.toValue = [NSValue valueWithCGRect:full];
-
-        self.delettingLayer.bounds = full;
+        self.stamp.alpha = 1.0;
+        self.stamp.transform = CGAffineTransformIdentity;
+        self.stamp.frame = CGRectMake(0, 0, self.bounds.size.width, self.bounds.size.height);
     } else {
-        deletingAnimation.fromValue = [NSValue valueWithCGRect:full];
-        deletingAnimation.toValue = [NSValue valueWithCGRect:empty];
-
-        self.delettingLayer.bounds = empty;
+        self.stamp.alpha = 0.0;
+        self.stamp.transform = CGAffineTransformMakeScale(1.5, 1.5);
     }
-
-    self.delettingLayer.position = (CGPoint){0, self.textLabel.layer.bounds.size.height/2};
-    [self.delettingLayer addAnimation:deletingAnimation forKey:nil];
-
-//    [UIView animateWithDuration:0.5
-//                          delay:0
-//                        options:UIViewAnimationOptionCurveEaseInOut
-//                     animations:^{
-//                         if (completed) {
-//                             self.contentView.backgroundColor = [UIColor greenColor];
-//                         } else {
-//                             self.contentView.backgroundColor = [UIColor redColor];
-//                         }
-//                     }
-//                     completion:^(BOOL finished){
-//                     }
-//     ];
 
     _completed = completed;
 }

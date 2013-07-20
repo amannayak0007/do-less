@@ -9,29 +9,13 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Next Action/TaskSelectionTableViewController.m"
-            timestampString = "395850970.410317"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "122"
-            endingLineNumber = "122"
-            landmarkName = "-tableView:cellForRowAtIndexPath:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "Next Action/TodayViewController.m"
-            timestampString = "395852995.0273"
+            timestampString = "396013442.779645"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "114"
-            endingLineNumber = "114"
-            landmarkName = "-tableView:didSelectRowAtIndexPath:"
+            startingLineNumber = "189"
+            endingLineNumber = "189"
+            landmarkName = "-toggleCompleted:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

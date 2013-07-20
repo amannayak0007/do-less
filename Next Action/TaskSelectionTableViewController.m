@@ -17,6 +17,8 @@
 
 @implementation TaskSelectionTableViewController
 
+#pragma mark - Getter & Setter
+
 - (Task *)model
 {
     if (!_model) {
@@ -24,6 +26,8 @@
     }
     return _model;
 }
+
+#pragma mark - View Controller
 
 - (void)viewDidLoad
 {
