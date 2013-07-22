@@ -1,5 +1,4 @@
-//
-//  AppDelegate.m
+// //  AppDelegate.m
 //  Do Less
 //
 //  Created by Roc on 13-4-30.
@@ -7,6 +6,7 @@
 //
 
 #import "AppDelegate.h"
+#import "TodayViewController.h"
 
 @implementation AppDelegate
 

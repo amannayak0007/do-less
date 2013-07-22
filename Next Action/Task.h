@@ -29,8 +29,8 @@
 - (void)requestAccessWithCompletion:(EKEventStoreRequestAccessCompletionHandler)completion;
 
 // Load a task of today
-- (id)loadTodayTaskWithKey:(NSString *)key;
+- (EKReminder *)loadTaskWithIdentifier:(NSString *)taskId;
 
-// Save a task of today
-- (void)saveTodayTask:(EKReminder *)task withKey:(NSString *)key;
+// Commit all the changes
+- (BOOL)commit:(NSError **)error;
 @end

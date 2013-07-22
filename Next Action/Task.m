@@ -33,31 +33,14 @@
     return [self.eventStore calendarsForEntityType:EKEntityTypeReminder];
 }
 
-- (id)loadTodayTaskWithKey:(NSString *)key
+- (EKReminder *)loadTaskWithIdentifier:(NSString *)taskId
 {
-    NSString *reminderId = [[NSUserDefaults standardUserDefaults] stringForKey:key];
-    EKReminder *task = (EKReminder *)[self.eventStore calendarItemWithIdentifier:reminderId];
-
-    if (task) {
-        return task;
-    } else {
-        return [NSNull null];
-    }
-}
-
-- (void)saveTodayTask:(EKReminder *)task withKey:(NSString *)key
-{
-    if ((id)task == [NSNull null]) {
-        [[NSUserDefaults standardUserDefaults] removeObjectForKey:key];
-    } else {
-        [[NSUserDefaults standardUserDefaults] setObject:task.calendarItemIdentifier forKey:key];
-    }
-
+    return (EKReminder *)[self.eventStore calendarItemWithIdentifier:taskId];
 }
 
 - (BOOL)saveTask:(EKReminder *)task error:(NSError **)error
 {
-    return [self.eventStore saveReminder:task commit:YES error:error];
+    return [self.eventStore saveReminder:task commit:NO error:error];
 }
 
 - (NSArray *)tasksInList:(EKCalendar *)list
@@ -93,5 +76,10 @@
 - (void)requestAccessWithCompletion:(EKEventStoreRequestAccessCompletionHandler)completion
 {
     [self.eventStore requestAccessToEntityType:EKEntityTypeReminder completion:completion];
+}
+
+- (BOOL)commit:(NSError *__autoreleasing *)error
+{
+    return [self.eventStore commit:error];
 }
 @end

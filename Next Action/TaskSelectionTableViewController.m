@@ -33,29 +33,6 @@
 {
     [super viewDidLoad];
 
-    [self.model requestAccessWithCompletion:^(BOOL granted, NSError *error) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            if (granted && !error) {
-                [self.tableView reloadData];
-            } else if (!granted) {
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Eh..."
-                                                                message:@"Do Less needs to access your reminders to work properly"
-                                                               delegate:nil
-                                                      cancelButtonTitle:@"OK"
-                                                      otherButtonTitles:nil];
-                [alert show];
-            } else {
-                NSLog(@"%@", [error localizedDescription]);
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Eh..."
-                                                                message:[error localizedDescription]
-                                                               delegate:nil
-                                                      cancelButtonTitle:@"Fine"
-                                                      otherButtonTitles:nil];
-                [alert show];
-            }
-        });
-    }];
-
     [self.model addObserver:self selector:@selector(eventStoreChanged:)];
 }
 

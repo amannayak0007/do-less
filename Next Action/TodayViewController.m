@@ -11,6 +11,8 @@
 #import "TodayViewController.h"
 #import "TaskCell.h"
 
+#define TODAY_TASK_NUMER 3
+
 @interface TodayViewController ()
 
 @property (strong, nonatomic) Task *model;
@@ -37,11 +39,18 @@
 - (NSMutableArray *)todayTasks
 {
     if (!_todayTasks) {
-        _todayTasks = [@[
-                        [self.model loadTodayTaskWithKey:@"Task1"],
-                        [self.model loadTodayTaskWithKey:@"Task2"],
-                        [self.model loadTodayTaskWithKey:@"Task3"],
-                        ] mutableCopy];
+        _todayTasks = [[NSMutableArray alloc] initWithCapacity:TODAY_TASK_NUMER];
+
+        for (NSUInteger i=0; i<TODAY_TASK_NUMER; i++) {
+            NSString *taskId = [[NSUserDefaults standardUserDefaults] stringForKey:[@"Task" stringByAppendingFormat:@"%d", i]];
+            EKReminder *task = (EKReminder *)[self.model loadTaskWithIdentifier:taskId];
+
+            if (task) {
+                _todayTasks[i] = task;
+            } else {
+                _todayTasks[i] = [NSNull null];
+            }
+        }
     }
 
     return _todayTasks;
@@ -49,23 +58,35 @@
 
 #pragma mark - View Controller
 
-- (void)setTodayTasks:(NSMutableArray *)todayTasks
-{
-    _todayTasks = todayTasks;
-    [self.model saveTodayTask:_todayTasks[0] withKey:@"Task1"];
-    [self.model saveTodayTask:_todayTasks[1] withKey:@"Task2"];
-    [self.model saveTodayTask:_todayTasks[2] withKey:@"Task3"];
-}
-
 - (BOOL)canBecomeFirstResponder
 {
     return YES;
 }
 
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [self resignFirstResponder];
+
+    NSError *error;
+    if (![self.model commit:&error]) {
+        NSLog(@"%@", [error localizedDescription]);
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Eh..."
+                                                        message:[error localizedDescription]
+                                                       delegate:nil
+                                              cancelButtonTitle:@"Fine"
+                                              otherButtonTitles:nil];
+        [alert show];
+    }
+
+    [super viewWillAppear:animated];
+}
+
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+
     [self becomeFirstResponder];
+    [self configScrollView];
 }
 
 - (void)viewDidLoad
@@ -96,12 +117,60 @@
     }];
 
     [self.model addObserver:self selector:@selector(eventStoreChanged:)];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(save:)
+                                                 name:UIApplicationDidEnterBackgroundNotification
+                                               object:[UIApplication sharedApplication]];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(commit:)
+                                                 name:UIApplicationDidEnterBackgroundNotification
+                                               object:[UIApplication sharedApplication]];
+}
+
+// Save the task ids of today to user default
+- (void)save:(NSNotification *)notification
+{
+    for (NSUInteger i=0; i<TODAY_TASK_NUMER; i++) {
+        EKReminder *task = self.todayTasks[i];
+        NSString *key = [@"Task" stringByAppendingFormat:@"%d", i];
+
+        if ((id)task == [NSNull null]) {
+            [[NSUserDefaults standardUserDefaults] removeObjectForKey:key];
+        } else {
+            [[NSUserDefaults standardUserDefaults] setObject:task.calendarItemIdentifier forKey:key];
+        }
+    }
+}
+
+// Commit all the modifications
+- (void)commit:(NSNotification *)notification
+{
+    NSError *error;
+    if (![self.model commit:&error]) {
+        NSLog(@"%@", [error localizedDescription]);
+    }
+}
+
+- (void)eventStoreChanged:(NSNotification *)notification
+{
+    for (NSUInteger i=0; i<TODAY_TASK_NUMER; i++) {
+
+        EKReminder *task = self.todayTasks[i];
+
+        if ((id)task == [NSNull null]) {
+            continue;
+        } else if (![task refresh]) {
+            self.todayTasks[i] = [NSNull null];
+        }
+    }
+
+    [self.tableView reloadData];
 }
 
 - (void)motionEnded:(UIEventSubtype)motion withEvent:(UIEvent *)event
 {
     // User was shaking the device.
-    if (motion == UIEventSubtypeMotionShake)
+    if (motion == UIEventSubtypeMotionShake && self.view.window)
     {
         NSMutableArray *uncompletedTasks = [[NSMutableArray alloc] init];
 
@@ -113,7 +182,9 @@
         }
 
         if ([uncompletedTasks count] == 0) {
-            self.todayTasks = [@[[NSNull null], [NSNull null],[NSNull null]] mutableCopy];
+            for (NSUInteger i=0; i<[self.todayTasks count]; i++) {
+                self.todayTasks[i] = [NSNull null];
+            }
         } else {
             for (NSNumber *j in uncompletedTasks) {
                 self.todayTasks[[j unsignedIntegerValue]] = [NSNull null];
@@ -124,7 +195,14 @@
     }
 }
 
--(void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
+- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
+{
+    [super didRotateFromInterfaceOrientation:fromInterfaceOrientation];
+
+    [self configScrollView];
+}
+
+- (void)configScrollView
 {
     if (   self.interfaceOrientation == UIInterfaceOrientationLandscapeLeft
         || self.interfaceOrientation == UIInterfaceOrientationLandscapeRight) {
@@ -132,11 +210,6 @@
     } else {
         self.tableView.scrollEnabled = NO;
     }
-}
-
-- (void)eventStoreChanged:(NSNotification *)notification
-{
-    [self.tableView reloadData];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -202,7 +275,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 3;
+    return TODAY_TASK_NUMER;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -211,7 +284,7 @@
         || self.interfaceOrientation == UIInterfaceOrientationLandscapeRight) {
         return self.tableView.bounds.size.height;
     } else {
-        return self.tableView.bounds.size.height/3;
+        return self.tableView.bounds.size.height/TODAY_TASK_NUMER;
     }
 }
 
