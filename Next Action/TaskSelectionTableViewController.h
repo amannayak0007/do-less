@@ -11,8 +11,13 @@
 
 @interface TaskSelectionTableViewController : UITableViewController
 
+// The task to be replaced
 @property (strong, nonatomic) EKReminder *replacedTask;
+
+// The selected task
 @property (strong, nonatomic) EKReminder *selectedTask;
+
+// The array of the tasks of today
 @property (strong, nonatomic) NSArray *todayTasks;
 
 @end

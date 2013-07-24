@@ -16,8 +16,14 @@
 // Task lists
 @property (strong, nonatomic, readonly) NSArray *lists;
 
-// Save task
+// Commit all the changes
+- (BOOL)commit:(NSError **)error;
+
+// Save a task
 - (BOOL)saveTask:(EKReminder *)task error:(NSError **)error;
+
+// Load a task
+- (EKReminder *)loadTaskWithIdentifier:(NSString *)taskId;
 
 // Get all the tasks in the given list
 - (NSArray *)tasksInList:(EKCalendar *)list;
@@ -28,9 +34,4 @@
 // Request access to user's reminders
 - (void)requestAccessWithCompletion:(EKEventStoreRequestAccessCompletionHandler)completion;
 
-// Load a task of today
-- (EKReminder *)loadTaskWithIdentifier:(NSString *)taskId;
-
-// Commit all the changes
-- (BOOL)commit:(NSError **)error;
 @end
