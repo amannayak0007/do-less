@@ -7,6 +7,7 @@
 //
 
 #import "ApplicationUnitTests.h"
+#import "TodayViewController.h"
 
 @implementation ApplicationUnitTests
 
@@ -22,11 +23,16 @@
     // Tear-down code here.
     
     [super tearDown];
+
+    [NSThread sleepForTimeInterval:1.0];
 }
 
 - (void)testExample
 {
-    STFail(@"Unit tests are not implemented yet in ApplicationUnitTests");
+    UIWindow *window = [UIApplication sharedApplication].windows[0];
+
+    STAssertTrue([window.rootViewController isKindOfClass:[TodayViewController class]], @"rootViewController is not TodayViewController.");
+//    TodayViewController *todayVC = (TodayViewController *)window.rootViewController;
 }
 
 @end

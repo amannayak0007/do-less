@@ -12,6 +12,7 @@
 @interface TaskSelectionTableViewController ()
 
 @property (strong, nonatomic) Task *model;
+@property (strong, nonatomic) UIImage *sectionHeaderBackground;
 
 @end
 
@@ -25,6 +26,15 @@
         _model = [[Task alloc] init];
     }
     return _model;
+}
+
+- (UIImage *)sectionHeaderBackground
+{
+    if (!_sectionHeaderBackground) {
+        _sectionHeaderBackground = [UIImage imageNamed:@"SectionHeaderBg.png"];
+    }
+
+    return _sectionHeaderBackground;
 }
 
 #pragma mark - View Controller
@@ -101,7 +111,7 @@
 
     if ([task isEqual:self.replacedTask]) {
         cell.backgroundView = [[UIView alloc] initWithFrame:cell.frame];
-        cell.backgroundView.backgroundColor = [UIColor redColor];
+        cell.backgroundView.backgroundColor = [UIColor colorWithRed:220/255.0 green:217/255.0 blue:217/255.0 alpha:1.0];
     } else {
         cell.backgroundView = nil;
     }
@@ -118,6 +128,25 @@
     self.selectedTask = tasks[indexPath.row];
 
     [self performSegueWithIdentifier:@"BackToTasksToday" sender:self];
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    UIImageView *header = [[UIImageView alloc] initWithImage:self.sectionHeaderBackground];
+    UILabel *title = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, header.bounds.size.width, header.bounds.size.height)];
+    title.backgroundColor = [UIColor clearColor];
+    title.textColor = [UIColor whiteColor];
+    title.text = [self tableView:tableView titleForHeaderInSection:section];
+    [header addSubview:title];
+
+    return (UIView *)header;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    EKCalendar *list = self.model.lists[section];
+    NSArray *tasks = [self.model tasksInList:list];
+    return [tasks count] == 0 ? 0 : self.sectionHeaderBackground.size.height;
 }
 
 @end

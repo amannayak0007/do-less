@@ -7,13 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D81042C517A6A03200DE0E5E /* Cell01@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D81042C017A6A03200DE0E5E /* Cell01@2x.png */; };
+		D81042C617A6A03200DE0E5E /* Cell02@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D81042C117A6A03200DE0E5E /* Cell02@2x.png */; };
+		D81042C717A6A03200DE0E5E /* Cell03@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D81042C217A6A03200DE0E5E /* Cell03@2x.png */; };
+		D81042C817A6A03200DE0E5E /* SectionHeaderBg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D81042C317A6A03200DE0E5E /* SectionHeaderBg@2x.png */; };
 		D823313E179F7DDB00AA90A1 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8656C0D172F932800C0AFDE /* SenTestingKit.framework */; };
 		D823313F179F7DDB00AA90A1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8656BE6172F932800C0AFDE /* UIKit.framework */; };
 		D8233140179F7DDB00AA90A1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8656BE8172F932800C0AFDE /* Foundation.framework */; };
 		D8233146179F7DDB00AA90A1 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D8233144179F7DDB00AA90A1 /* InfoPlist.strings */; };
 		D8233149179F7DDB00AA90A1 /* ApplicationUnitTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D8233148179F7DDB00AA90A1 /* ApplicationUnitTests.m */; };
 		D850080C17451976008AE1D4 /* TaskSelectionTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D850080B17451976008AE1D4 /* TaskSelectionTableViewController.m */; };
-		D85AA503179A83FC005F228C /* Stamp.png in Resources */ = {isa = PBXBuildFile; fileRef = D85AA502179A809B005F228C /* Stamp.png */; };
+		D85AA503179A83FC005F228C /* Stamp@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D85AA502179A809B005F228C /* Stamp@2x.png */; };
 		D85EC3E0173118F1009DA21D /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = D85EC3DF173118F1009DA21D /* Icon.png */; };
 		D85EC3E2173118FD009DA21D /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D85EC3E1173118FD009DA21D /* Icon@2x.png */; };
 		D8656BE7172F932800C0AFDE /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8656BE6172F932800C0AFDE /* UIKit.framework */; };
@@ -45,6 +49,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D81042C017A6A03200DE0E5E /* Cell01@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Cell01@2x.png"; sourceTree = "<group>"; };
+		D81042C117A6A03200DE0E5E /* Cell02@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Cell02@2x.png"; sourceTree = "<group>"; };
+		D81042C217A6A03200DE0E5E /* Cell03@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Cell03@2x.png"; sourceTree = "<group>"; };
+		D81042C317A6A03200DE0E5E /* SectionHeaderBg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SectionHeaderBg@2x.png"; sourceTree = "<group>"; };
 		D823313D179F7DDB00AA90A1 /* ApplicationUnitTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ApplicationUnitTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8233143179F7DDB00AA90A1 /* ApplicationUnitTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ApplicationUnitTests-Info.plist"; sourceTree = "<group>"; };
 		D8233145179F7DDB00AA90A1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -53,7 +61,7 @@
 		D823314A179F7DDB00AA90A1 /* ApplicationUnitTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ApplicationUnitTests-Prefix.pch"; sourceTree = "<group>"; };
 		D850080A17451976008AE1D4 /* TaskSelectionTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = TaskSelectionTableViewController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		D850080B17451976008AE1D4 /* TaskSelectionTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = TaskSelectionTableViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		D85AA502179A809B005F228C /* Stamp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Stamp.png; sourceTree = "<group>"; };
+		D85AA502179A809B005F228C /* Stamp@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Stamp@2x.png"; sourceTree = "<group>"; };
 		D85AA504179AB575005F228C /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		D85EC3DF173118F1009DA21D /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		D85EC3E1173118FD009DA21D /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
@@ -205,13 +213,17 @@
 		D89D48E9179C0EB4007ED284 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				D81042C017A6A03200DE0E5E /* Cell01@2x.png */,
+				D81042C117A6A03200DE0E5E /* Cell02@2x.png */,
+				D81042C217A6A03200DE0E5E /* Cell03@2x.png */,
+				D81042C317A6A03200DE0E5E /* SectionHeaderBg@2x.png */,
 				D8656BFC172F932800C0AFDE /* Default-568h@2x.png */,
 				D8656BF8172F932800C0AFDE /* Default.png */,
 				D8656BFA172F932800C0AFDE /* Default@2x.png */,
 				D8AC75421795575A00883487 /* Icon-120@2x.png */,
 				D85EC3DF173118F1009DA21D /* Icon.png */,
 				D85EC3E1173118FD009DA21D /* Icon@2x.png */,
-				D85AA502179A809B005F228C /* Stamp.png */,
+				D85AA502179A809B005F228C /* Stamp@2x.png */,
 				D8CA028E179D549B00648313 /* Stamp.wav */,
 			);
 			name = Assets;
@@ -313,7 +325,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D8656BF1172F932800C0AFDE /* InfoPlist.strings in Resources */,
-				D85AA503179A83FC005F228C /* Stamp.png in Resources */,
+				D85AA503179A83FC005F228C /* Stamp@2x.png in Resources */,
 				D8656BF9172F932800C0AFDE /* Default.png in Resources */,
 				D8656BFB172F932800C0AFDE /* Default@2x.png in Resources */,
 				D8656BFD172F932800C0AFDE /* Default-568h@2x.png in Resources */,
@@ -321,6 +333,10 @@
 				D8CA028F179D549B00648313 /* Stamp.wav in Resources */,
 				D85EC3E0173118F1009DA21D /* Icon.png in Resources */,
 				D85EC3E2173118FD009DA21D /* Icon@2x.png in Resources */,
+				D81042C517A6A03200DE0E5E /* Cell01@2x.png in Resources */,
+				D81042C617A6A03200DE0E5E /* Cell02@2x.png in Resources */,
+				D81042C717A6A03200DE0E5E /* Cell03@2x.png in Resources */,
+				D81042C817A6A03200DE0E5E /* SectionHeaderBg@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

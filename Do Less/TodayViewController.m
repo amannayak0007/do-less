@@ -303,6 +303,22 @@
         cell.completed = task.isCompleted;
     }
 
+    cell.textLabel.backgroundColor = [UIColor clearColor];
+
+    switch (indexPath.row) {
+        case 0:
+            cell.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Cell01.png"]];
+            break;
+        case 1:
+            cell.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Cell02.png"]];
+            break;
+        case 2:
+            cell.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Cell03.png"]];
+            break;
+        default:
+            break;
+    }
+
     return cell;
 }
 

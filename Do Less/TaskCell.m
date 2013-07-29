@@ -23,7 +23,8 @@
 {
     if (!_stamp) {
         _stamp = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Stamp.png"]];
-        _stamp.autoresizingMask = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth;
+        _stamp.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleRightMargin
+                                 |UIViewAutoresizingFlexibleTopMargin|UIViewAutoresizingFlexibleBottomMargin;
         [self addSubview:_stamp];
     }
     return _stamp;
@@ -59,7 +60,7 @@
                          animations:^{
                              self.stamp.alpha = 1.0;
                              self.stamp.transform = CGAffineTransformIdentity;
-                             self.stamp.frame = CGRectMake(0, 0, self.bounds.size.width, self.bounds.size.height);
+                             self.stamp.center = CGPointMake(self.bounds.size.width/3, self.bounds.size.height/2);
                          }
                          completion:^(BOOL finish){}
          ];
@@ -85,7 +86,7 @@
     if (completed) {
         self.stamp.alpha = 1.0;
         self.stamp.transform = CGAffineTransformIdentity;
-        self.stamp.frame = CGRectMake(0, 0, self.bounds.size.width, self.bounds.size.height);
+        self.stamp.center = CGPointMake(self.bounds.size.width/3, self.bounds.size.height/2);
     } else {
         self.stamp.alpha = 0.0;
         self.stamp.transform = CGAffineTransformMakeScale(1.5, 1.5);
