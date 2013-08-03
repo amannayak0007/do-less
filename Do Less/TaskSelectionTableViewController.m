@@ -44,11 +44,19 @@
     [super viewDidLoad];
 
     [self.model addObserver:self selector:@selector(eventStoreChanged:)];
+
+    self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
 - (void)eventStoreChanged:(NSNotification *)notification
 {
     [self.tableView reloadData];
+}
+
+- (void)setEditing:(BOOL)editing animated:(BOOL)animated
+{
+    [super setEditing:editing animated:animated];
+    [self.tableView setEditing:editing animated:YES];
 }
 
 #pragma mark - Table view data source
@@ -109,20 +117,20 @@
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
     }
 
-    if ([task isEqual:self.replacedTask]) {
-        cell.backgroundView = [[UIView alloc] initWithFrame:cell.frame];
-        cell.backgroundView.backgroundColor = [UIColor colorWithRed:220/255.0 green:217/255.0 blue:217/255.0 alpha:1.0];
-    } else {
-        cell.backgroundView = nil;
-    }
-
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    
 }
 
 #pragma mark - Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+
     EKCalendar *list = self.model.lists[indexPath.section];
     NSArray *tasks = [self.model tasksInList:list];
     self.selectedTask = tasks[indexPath.row];
@@ -130,23 +138,31 @@
     [self performSegueWithIdentifier:@"BackToTasksToday" sender:self];
 }
 
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-{
-    UIImageView *header = [[UIImageView alloc] initWithImage:self.sectionHeaderBackground];
-    UILabel *title = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, header.bounds.size.width, header.bounds.size.height)];
-    title.backgroundColor = [UIColor clearColor];
-    title.textColor = [UIColor whiteColor];
-    title.text = [self tableView:tableView titleForHeaderInSection:section];
-    [header addSubview:title];
-
-    return (UIView *)header;
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-{
-    EKCalendar *list = self.model.lists[section];
-    NSArray *tasks = [self.model tasksInList:list];
-    return [tasks count] == 0 ? 0 : self.sectionHeaderBackground.size.height;
-}
+//#define SHADOW_HEIGHT 12
+//
+//- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+//{
+//    UIImageView *header = [[UIImageView alloc] initWithImage:self.sectionHeaderBackground];
+//
+//    UIView *wrapperView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, header.bounds.size.width, header.bounds.size.height - SHADOW_HEIGHT)];
+//    [wrapperView addSubview:header];
+//
+//    UILabel *title = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, wrapperView.bounds.size.width, wrapperView.bounds.size.height)];
+//    title.backgroundColor = [UIColor clearColor];
+//    title.textColor = [UIColor whiteColor];
+//    title.text = [self tableView:tableView titleForHeaderInSection:section];
+//
+//    [wrapperView addSubview:title];
+//
+//
+//    return wrapperView;
+//}
+//
+//- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+//{
+//    EKCalendar *list = self.model.lists[section];
+//    NSArray *tasks = [self.model tasksInList:list];
+//    return [tasks count] == 0 ? 0 : self.sectionHeaderBackground.size.height - SHADOW_HEIGHT;
+//}
 
 @end

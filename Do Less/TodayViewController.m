@@ -86,7 +86,6 @@
     [super viewDidAppear:animated];
 
     [self becomeFirstResponder];
-    [self configScrollView];
 }
 
 - (void)viewDidLoad
@@ -195,13 +194,6 @@
     }
 }
 
-- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
-{
-    [super didRotateFromInterfaceOrientation:fromInterfaceOrientation];
-
-    [self configScrollView];
-}
-
 - (void)configScrollView
 {
     if (   self.interfaceOrientation == UIInterfaceOrientationLandscapeLeft
@@ -215,7 +207,8 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([segue.identifier isEqualToString:@"ToTaskTable"]) {
-        TaskSelectionTableViewController *taskSelectionTVC = segue.destinationViewController;
+        UINavigationController *nvc = segue.destinationViewController;
+        TaskSelectionTableViewController *taskSelectionTVC = (TaskSelectionTableViewController*)nvc.topViewController;
         taskSelectionTVC.replacedTask = (EKReminder *)sender;
         taskSelectionTVC.todayTasks = self.todayTasks;
     }
@@ -228,7 +221,7 @@
 {
     TaskSelectionTableViewController *taskSelectionTVC = segue.sourceViewController;
 
-    if ([taskSelectionTVC.selectedTask isEqual:taskSelectionTVC.replacedTask]) {
+    if (!taskSelectionTVC.selectedTask || [taskSelectionTVC.selectedTask isEqual:taskSelectionTVC.replacedTask]) {
         return;
     }
 
@@ -305,18 +298,13 @@
 
     cell.textLabel.backgroundColor = [UIColor clearColor];
 
-    switch (indexPath.row) {
-        case 0:
-            cell.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Cell01.png"]];
-            break;
-        case 1:
-            cell.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Cell02.png"]];
-            break;
-        case 2:
-            cell.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Cell03.png"]];
-            break;
-        default:
-            break;
+    if (   self.interfaceOrientation == UIInterfaceOrientationLandscapeLeft
+        || self.interfaceOrientation == UIInterfaceOrientationLandscapeRight) {
+        cell.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"LandscapeCell.png"]];
+        cell.selectedBackgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"LandscapeCellSelected.png"]];
+    } else {
+        cell.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"PortraitCell.png"]];
+        cell.selectedBackgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"PortraitCellSelected.png"]];
     }
 
     return cell;
