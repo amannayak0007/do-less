@@ -38,9 +38,14 @@
     return (EKReminder *)[self.eventStore calendarItemWithIdentifier:taskId];
 }
 
-- (BOOL)saveTask:(EKReminder *)task error:(NSError **)error
+- (BOOL)saveTask:(EKReminder *)task commit:(BOOL)commit error:(NSError *__autoreleasing *)error
 {
     return [self.eventStore saveReminder:task commit:NO error:error];
+}
+
+- (BOOL)removeTask:(EKReminder *)task commit:(BOOL)commit error:(NSError *__autoreleasing *)error
+{
+    return [self.eventStore removeReminder:task commit:commit error:error];
 }
 
 - (NSArray *)tasksInList:(EKCalendar *)list
@@ -64,13 +69,19 @@
     return tasks;
 }
 
+- (EKReminder *)taskWithIndexPath:(NSIndexPath *)indexPath
+{
+    EKCalendar *list = self.lists[indexPath.section];
+    NSArray *tasks = [self tasksInList:list];
+    return tasks[indexPath.row];
+}
+
 - (void)addObserver:(id)notificationObserver selector:(SEL)notificationSelector
 {
     [[NSNotificationCenter defaultCenter] addObserver:notificationObserver
                                              selector:notificationSelector
                                                  name:EKEventStoreChangedNotification
                                                object:self.eventStore];
-
 }
 
 - (void)requestAccessWithCompletion:(EKEventStoreRequestAccessCompletionHandler)completion
@@ -81,5 +92,11 @@
 - (BOOL)commit:(NSError *__autoreleasing *)error
 {
     return [self.eventStore commit:error];
+}
+
+- (EKReminder *)newTask
+{
+    EKReminder *task = [EKReminder reminderWithEventStore:self.eventStore];
+    return task;
 }
 @end

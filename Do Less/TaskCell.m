@@ -9,12 +9,13 @@
 #import "TaskCell.h"
 #include <AudioToolbox/AudioToolbox.h>
 
-
-#define DELETING_LINE_WIDTH 2
+#define ANIMATION_TIME 0.3
 
 @interface TaskCell()
+
 @property (strong, nonatomic) UIImageView *stamp;
 @property (nonatomic)  SystemSoundID stampingSound;
+
 @end
 
 @implementation TaskCell
@@ -54,7 +55,7 @@
     }
 
     if (completed) {
-        [UIView animateWithDuration:0.3
+        [UIView animateWithDuration:ANIMATION_TIME
                               delay:0.0
                             options:UIViewAnimationOptionCurveEaseIn
                          animations:^{
@@ -67,7 +68,7 @@
 
         AudioServicesPlaySystemSound(self.stampingSound);
     } else {
-        [UIView animateWithDuration:0.3
+        [UIView animateWithDuration:ANIMATION_TIME
                               delay:0.0
                             options:UIViewAnimationOptionCurveEaseIn
                          animations:^{

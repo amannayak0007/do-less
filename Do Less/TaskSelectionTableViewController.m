@@ -42,15 +42,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
-    [self.model addObserver:self selector:@selector(eventStoreChanged:)];
-
     self.navigationItem.rightBarButtonItem = self.editButtonItem;
-}
-
-- (void)eventStoreChanged:(NSNotification *)notification
-{
-    [self.tableView reloadData];
 }
 
 - (void)setEditing:(BOOL)editing animated:(BOOL)animated
@@ -82,7 +74,6 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-
     static NSDateFormatter *dateFormatter;
     if (!dateFormatter) {
         dateFormatter = [[NSDateFormatter alloc] init];
@@ -91,15 +82,12 @@
         [dateFormatter setDoesRelativeDateFormatting:YES];
     }
 
-    EKCalendar *list = self.model.lists[indexPath.section];
-    NSArray *tasks = [self.model tasksInList:list];
-    EKReminder *task = tasks[indexPath.row];
-
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Task" forIndexPath:indexPath];
+    EKReminder *task = [self.model taskWithIndexPath:indexPath];
 
     cell.textLabel.text = task.title;
 
-    // Dispaly task's due date if possible
+    // Dispaly task's due date if available
     if (task.dueDateComponents) {
         NSCalendar *gregorian = [[NSCalendar alloc]
                                  initWithCalendarIdentifier:NSGregorianCalendar];
@@ -122,7 +110,22 @@
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        EKReminder *task = [self.model taskWithIndexPath:indexPath];
+
+        NSError *error;
+        if ([self.model removeTask:task commit:YES error:&error]) {
+            [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationRight];
+        } else {
+            NSLog(@"%@", [error localizedDescription]);
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Eh..."
+                                                            message:[error localizedDescription]
+                                                           delegate:nil
+                                                  cancelButtonTitle:@"OK"
+                                                  otherButtonTitles:nil];
+            [alert show];
+        }
+    }
 }
 
 #pragma mark - Table view delegate
@@ -138,31 +141,26 @@
     [self performSegueWithIdentifier:@"BackToTasksToday" sender:self];
 }
 
-//#define SHADOW_HEIGHT 12
-//
 //- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 //{
 //    UIImageView *header = [[UIImageView alloc] initWithImage:self.sectionHeaderBackground];
 //
-//    UIView *wrapperView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, header.bounds.size.width, header.bounds.size.height - SHADOW_HEIGHT)];
-//    [wrapperView addSubview:header];
-//
-//    UILabel *title = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, wrapperView.bounds.size.width, wrapperView.bounds.size.height)];
+//    UILabel *title = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, header.bounds.size.width, header.bounds.size.height)];
 //    title.backgroundColor = [UIColor clearColor];
 //    title.textColor = [UIColor whiteColor];
 //    title.text = [self tableView:tableView titleForHeaderInSection:section];
 //
-//    [wrapperView addSubview:title];
+//    [header addSubview:title];
 //
 //
-//    return wrapperView;
+//    return header;
 //}
 //
 //- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 //{
 //    EKCalendar *list = self.model.lists[section];
 //    NSArray *tasks = [self.model tasksInList:list];
-//    return [tasks count] == 0 ? 0 : self.sectionHeaderBackground.size.height - SHADOW_HEIGHT;
+//    return [tasks count] == 0 ? 0 : self.sectionHeaderBackground.size.height;
 //}
 
 @end
