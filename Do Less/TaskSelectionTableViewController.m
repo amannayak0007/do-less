@@ -8,11 +8,13 @@
 
 #import "Task.h"
 #import "TaskSelectionTableViewController.h"
+#import "Utility.h"
 
 @interface TaskSelectionTableViewController ()
 
 @property (strong, nonatomic) Task *model;
 @property (strong, nonatomic) UIImage *sectionHeaderBackground;
+@property (strong, nonatomic) UIImageView *background;
 
 @end
 
@@ -31,10 +33,21 @@
 - (UIImage *)sectionHeaderBackground
 {
     if (!_sectionHeaderBackground) {
-        _sectionHeaderBackground = [UIImage imageNamed:@"SectionHeaderBg.png"];
+        _sectionHeaderBackground = [[UIImage imageNamed:@"ListHeaderBg.png"] resizableImageWithCapInsets:UIEdgeInsetsZero];
     }
 
     return _sectionHeaderBackground;
+}
+
+- (UIImageView *)background
+{
+    if (!_background) {
+        CGRect appFrame = [UIScreen mainScreen].applicationFrame;
+
+        _background = [Utility appBackground];
+        _background.frame = CGRectMake(0, -appFrame.size.height, appFrame.size.height*3, appFrame.size.height*3);
+    }
+    return _background;
 }
 
 #pragma mark - View Controller
@@ -42,7 +55,36 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
     self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    
+    [self configNavBarBackgroundImage];
+
+    self.tableView.tableFooterView = [[UIView alloc] init];
+
+    [self.tableView insertSubview:self.background atIndex:0];
+}
+
+- (void)viewDidLayoutSubviews{
+    // Fixme: Wrong place !
+    [self.tableView sendSubviewToBack:self.background];
+}
+
+- (void)configNavBarBackgroundImage
+{
+    NSMutableString *imageFileName = [@"SelectBannerBg" mutableCopy];
+
+    [imageFileName appendFormat:@"-%02d", self.navBarColorIndex + 1];
+
+    NSString *portraitFileName = [imageFileName stringByAppendingString:@"-portrait"];
+    NSString *landscapeFileName = [imageFileName stringByAppendingString:@"-landscape"];
+
+    if (IS_WIDESCREEN) {
+        landscapeFileName = [landscapeFileName stringByAppendingString:@"-568h"];
+    }
+
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:portraitFileName] forBarMetrics:UIBarMetricsDefault];
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:landscapeFileName] forBarMetrics:UIBarMetricsLandscapePhone];
 }
 
 - (void)setEditing:(BOOL)editing animated:(BOOL)animated
@@ -105,6 +147,12 @@
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
     }
 
+    UIImage *bg =[[UIImage imageNamed:@"ListPageBg"]resizableImageWithCapInsets:UIEdgeInsetsZero];
+    UIImage *selectedBg = [[UIImage imageNamed:@"ListHover"]resizableImageWithCapInsets:UIEdgeInsetsZero];
+
+    cell.backgroundView = [[UIImageView alloc]initWithImage:bg];
+    cell.selectedBackgroundView = [[UIImageView alloc]initWithImage:selectedBg];
+
     return cell;
 }
 
@@ -117,13 +165,7 @@
         if ([self.model removeTask:task commit:YES error:&error]) {
             [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationRight];
         } else {
-            NSLog(@"%@", [error localizedDescription]);
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Eh..."
-                                                            message:[error localizedDescription]
-                                                           delegate:nil
-                                                  cancelButtonTitle:@"OK"
-                                                  otherButtonTitles:nil];
-            [alert show];
+            [Utility alert:[error localizedDescription]];
         }
     }
 }
@@ -141,26 +183,26 @@
     [self performSegueWithIdentifier:@"BackToTasksToday" sender:self];
 }
 
-//- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-//{
-//    UIImageView *header = [[UIImageView alloc] initWithImage:self.sectionHeaderBackground];
-//
-//    UILabel *title = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, header.bounds.size.width, header.bounds.size.height)];
-//    title.backgroundColor = [UIColor clearColor];
-//    title.textColor = [UIColor whiteColor];
-//    title.text = [self tableView:tableView titleForHeaderInSection:section];
-//
-//    [header addSubview:title];
-//
-//
-//    return header;
-//}
-//
-//- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-//{
-//    EKCalendar *list = self.model.lists[section];
-//    NSArray *tasks = [self.model tasksInList:list];
-//    return [tasks count] == 0 ? 0 : self.sectionHeaderBackground.size.height;
-//}
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    UIImageView *header = [[UIImageView alloc] initWithImage:self.sectionHeaderBackground];
+
+    UILabel *title = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, header.bounds.size.width, header.bounds.size.height)];
+    title.backgroundColor = [UIColor clearColor];
+    title.textColor = [UIColor whiteColor];
+    title.text = [self tableView:tableView titleForHeaderInSection:section];
+
+    [header addSubview:title];
+
+
+    return header;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    EKCalendar *list = self.model.lists[section];
+    NSArray *tasks = [self.model tasksInList:list];
+    return [tasks count] == 0 ? 0 : self.sectionHeaderBackground.size.height;
+}
 
 @end

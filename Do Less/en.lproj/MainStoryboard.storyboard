@@ -9,10 +9,11 @@
         <scene sceneID="3QY-5S-KaH">
             <objects>
                 <tableViewController id="3Gz-xx-3N9" customClass="TaskSelectionTableViewController" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="aAD-lc-d4U">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="aAD-lc-d4U">
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="separatorColor" red="0.56862745100000001" green="0.56470588239999997" blue="0.56470588239999997" alpha="1" colorSpace="deviceRGB"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Task" textLabel="7kr-Bk-IWw" detailTextLabel="Z6p-kY-Tbg" style="IBUITableViewCellStyleSubtitle" id="tg4-HK-cFS">
                                 <rect key="frame" x="0.0" y="22" width="320" height="44"/>
@@ -49,7 +50,7 @@
                     <navigationItem key="navigationItem" title="Select Task" id="fhc-dc-NTh">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="0Bh-5E-d6d">
                             <connections>
-                                <segue destination="XxH-tK-A6W" kind="unwind" unwindAction="didSelectNewTask:" id="pSe-RA-VNZ"/>
+                                <segue destination="XxH-tK-A6W" kind="unwind" unwindAction="didSelectNewTask:" id="KcD-8r-guN"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -66,7 +67,7 @@
         <scene sceneID="70S-wP-iio">
             <objects>
                 <navigationController definesPresentationContext="YES" id="xqv-Zv-HRc" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="3Xb-zx-XUm">
+                    <navigationBar key="navigationBar" clipsSubviews="YES" contentMode="scaleToFill" id="3Xb-zx-XUm">
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -87,7 +88,7 @@
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="TaskCell" textLabel="qMB-XJ-9dk" style="IBUITableViewCellStyleDefault" id="jW4-Ar-BZm" customClass="TaskCell">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="gray" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="TaskCell" textLabel="qMB-XJ-9dk" style="IBUITableViewCellStyleDefault" id="jW4-Ar-BZm" customClass="TaskCell">
                                 <rect key="frame" x="0.0" y="22" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">

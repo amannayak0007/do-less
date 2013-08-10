@@ -20,13 +20,18 @@
 
 @implementation TaskCell
 
++ (CGPoint)defaultStampCoordinate
+{
+    return CGPointMake(0.333, 0.333);
+}
+
 - (UIImageView *)stamp
 {
     if (!_stamp) {
         _stamp = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Stamp.png"]];
-        _stamp.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleRightMargin
-                                 |UIViewAutoresizingFlexibleTopMargin|UIViewAutoresizingFlexibleBottomMargin;
-        [self addSubview:_stamp];
+        [_stamp setTranslatesAutoresizingMaskIntoConstraints:NO];
+
+        [self.contentView addSubview:_stamp];
     }
     return _stamp;
 }
@@ -47,52 +52,71 @@
     return _stampingSound;
 }
 
+- (void)updateStampConstrainsWithCGPoint:(CGPoint)point
+{
+    [self.contentView removeConstraints:self.contentView.constraints];
+    [self.contentView addConstraints:@[
+        [NSLayoutConstraint constraintWithItem:_stamp
+                                     attribute:NSLayoutAttributeCenterX
+                                     relatedBy:NSLayoutRelationEqual
+                                        toItem:self.contentView
+                                     attribute:NSLayoutAttributeCenterX
+                                    multiplier:2*point.x
+                                      constant:0],
+        [NSLayoutConstraint constraintWithItem:_stamp
+                                     attribute:NSLayoutAttributeCenterY
+                                     relatedBy:NSLayoutRelationEqual
+                                        toItem:self.contentView
+                                     attribute:NSLayoutAttributeCenterY
+                                    multiplier:2*point.y
+                                      constant:0]
+     ]];
+}
+
+- (void)setCompleted:(BOOL)completed atRelativePoint:(CGPoint)point animated:(BOOL)animated;
+{
+    _completed = completed;
+    [self.contentView bringSubviewToFront:_stamp];
+
+    if (_completed) {
+        [self updateStampConstrainsWithCGPoint:point];
+    }
+
+    if (_completed && animated) {
+        AudioServicesPlaySystemSound(self.stampingSound);
+    }
+
+    if (animated) {
+        [UIView animateWithDuration:ANIMATION_TIME
+                              delay:0
+                            options:UIViewAnimationOptionCurveEaseIn
+                         animations:^{
+                             self.stamp.alpha = _completed ? 1 : 0;
+                             self.stamp.transform = _completed ? CGAffineTransformIdentity : CGAffineTransformMakeScale(1.5, 1.5);
+                         }
+                         completion:^(BOOL finish){}
+         ];
+    } else {
+        self.stamp.alpha = _completed ? 1.0 : 0.0;
+        self.stamp.transform = _completed ? CGAffineTransformIdentity : CGAffineTransformMakeScale(1.5, 1.5);
+    }
+}
+
 - (void)setCompleted:(BOOL)completed animated:(BOOL)animated
 {
-    if (!animated) {
-        self.completed = completed;
-        return;
-    }
-
-    if (completed) {
-        [UIView animateWithDuration:ANIMATION_TIME
-                              delay:0.0
-                            options:UIViewAnimationOptionCurveEaseIn
-                         animations:^{
-                             self.stamp.alpha = 1.0;
-                             self.stamp.transform = CGAffineTransformIdentity;
-                             self.stamp.center = CGPointMake(self.bounds.size.width/3, self.bounds.size.height/2);
-                         }
-                         completion:^(BOOL finish){}
-         ];
-
-        AudioServicesPlaySystemSound(self.stampingSound);
-    } else {
-        [UIView animateWithDuration:ANIMATION_TIME
-                              delay:0.0
-                            options:UIViewAnimationOptionCurveEaseIn
-                         animations:^{
-                             self.stamp.alpha = 0.0;
-                             self.stamp.transform = CGAffineTransformMakeScale(1.5, 1.5);
-                         }
-                         completion:^(BOOL finish){}
-         ];
-    }
-
-    _completed = completed;
+    [self setCompleted:completed
+       atRelativePoint:[[self class] defaultStampCoordinate]
+              animated:animated];
 }
 
 - (void)setCompleted:(BOOL)completed
 {
-    if (completed) {
-        self.stamp.alpha = 1.0;
-        self.stamp.transform = CGAffineTransformIdentity;
-        self.stamp.center = CGPointMake(self.bounds.size.width/3, self.bounds.size.height/2);
-    } else {
-        self.stamp.alpha = 0.0;
-        self.stamp.transform = CGAffineTransformMakeScale(1.5, 1.5);
-    }
+    [self setCompleted:completed
+              animated:NO];
+}
 
-    _completed = completed;
+- (void)layoutSubviews
+{
+    [super layoutSubviews];
 }
 @end

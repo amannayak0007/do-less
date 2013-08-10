@@ -10,6 +10,7 @@
 #import "TaskSelectionTableViewController.h"
 #import "TodayViewController.h"
 #import "TaskCell.h"
+#import "Utility.h"
 
 #define TODAY_TASK_NUMER 3
 
@@ -19,7 +20,7 @@
 
 // Tasks for today
 @property (strong, nonatomic) NSMutableArray *todayTasks;
-
+@property (strong, nonatomic) NSMutableArray *stampCoordinates;
 @property NSUInteger replacedIndex;
 
 @end
@@ -74,32 +75,35 @@
     return _todayTasks;
 }
 
+- (NSMutableArray *)stampCoordinates
+{
+    if (!_stampCoordinates) {
+        _stampCoordinates = [[NSMutableArray alloc] initWithCapacity:TODAY_TASK_NUMER];
+        for (NSUInteger i=0; i<TODAY_TASK_NUMER; i++) {
+            _stampCoordinates[i] = [NSValue valueWithCGPoint:[TaskCell defaultStampCoordinate]];
+        }
+    }
+    return _stampCoordinates;
+}
+
 #pragma mark - View Controller
 
 - (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
 {
     for (UITableViewCell *cell in self.tableView.visibleCells) {
-        if (   toInterfaceOrientation == UIInterfaceOrientationLandscapeLeft
-            || toInterfaceOrientation == UIInterfaceOrientationLandscapeRight) {
-            cell.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"LandscapeCell.png"]];
-            cell.selectedBackgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"LandscapeCellSelected.png"]];
-        } else {
-            cell.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"PortraitCell.png"]];
-            cell.selectedBackgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"PortraitCellSelected.png"]];
-        }
+        NSInteger idx = [self.tableView indexPathForCell:cell].row;
+        [self configCellBackground:cell ByIndex:idx andOrientation:toInterfaceOrientation];
     }
 }
 
-- (BOOL)canBecomeFirstResponder
+- (void)viewWillAppear:(BOOL)animated
 {
-    return YES;
-}
+    [super viewWillAppear:animated];
 
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-
-    [self becomeFirstResponder];
+    for (UITableViewCell *cell in self.tableView.visibleCells) {
+        NSInteger idx = [self.tableView indexPathForCell:cell].row;
+        [self configCellBackground:cell ByIndex:idx andOrientation:self.interfaceOrientation];
+    }
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -110,19 +114,15 @@
 
     NSError *error;
     if (![self.model commit:&error]) {
-        [self alert:[error localizedDescription]];
+        [Utility alert:[error localizedDescription]];
     }
 }
 
-- (void)alert:(NSString *)msg
+- (void)viewDidAppear:(BOOL)animated
 {
-    NSLog(@"%@", msg);
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Eh..."
-                                                    message:msg
-                                                   delegate:nil
-                                          cancelButtonTitle:@"OK"
-                                          otherButtonTitles:nil];
-    [alert show];
+    [super viewDidAppear:animated];
+
+    [self becomeFirstResponder];
 }
 
 - (void)viewDidLoad
@@ -133,7 +133,7 @@
         case EKAuthorizationStatusDenied:
         case EKAuthorizationStatusRestricted:
         {
-            [self alert: @"To let Do Less work properly, please authorize it to access your reminders."];
+            [Utility alert: @"To let Do Less work properly, please authorize it to access your reminders."];
             break;
         }
         case EKAuthorizationStatusNotDetermined:
@@ -143,9 +143,9 @@
                     if (granted && !error) {
                         [self.tableView reloadData];
                     } else if (!granted) {
-                        [self alert: @"To let Do Less work properly, please authorize it to access your reminders."];
+                        [Utility alert: @"To let Do Less work properly, please authorize it to access your reminders."];
                     } else {
-                        [self alert:[error localizedDescription]];
+                        [Utility alert:[error localizedDescription]];
                     }
                 });
             }];
@@ -164,6 +164,8 @@
                                              selector:@selector(didEnterBackground:)
                                                  name:UIApplicationDidEnterBackgroundNotification
                                                object:[UIApplication sharedApplication]];
+
+    self.tableView.backgroundView = [Utility appBackground];
 }
 
 - (void)didEnterBackground:(NSNotification *)notification
@@ -188,6 +190,11 @@
 
     // Dismiss task selection view
     [self dismissViewControllerAnimated:NO completion:^{}];
+}
+
+- (BOOL)canBecomeFirstResponder
+{
+    return YES;
 }
 
 - (void)eventStoreChanged:(NSNotification *)notification
@@ -237,10 +244,28 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([segue.identifier isEqualToString:@"ToTaskTable"]) {
+
         UINavigationController *nvc = segue.destinationViewController;
         TaskSelectionTableViewController *taskSelectionTVC = (TaskSelectionTableViewController*)nvc.topViewController;
+
         taskSelectionTVC.replacedTask = (EKReminder *)sender;
         taskSelectionTVC.todayTasks = self.todayTasks;
+        taskSelectionTVC.navBarColorIndex = self.replacedIndex;
+    
+        [[UIBarButtonItem appearance] setBackgroundImage:[[UIImage imageNamed:@"Button-Default"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 10, 0, 10)]
+                                   forState:UIControlStateNormal
+                                 barMetrics:UIBarMetricsDefault];
+        [[UIBarButtonItem appearance] setBackgroundImage:[[UIImage imageNamed:@"Button-Active"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 10, 0, 10)]
+                                   forState:UIControlStateHighlighted
+                                 barMetrics:UIBarMetricsDefault];
+
+        [[UIBarButtonItem appearance] setBackgroundImage:[[UIImage imageNamed:@"Button-Landscape-Default"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 10, 0, 10)]
+                                   forState:UIControlStateNormal
+                                 barMetrics:UIBarMetricsLandscapePhone];
+        [[UIBarButtonItem appearance] setBackgroundImage:[[UIImage imageNamed:@"Button-Landscape-Active"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 10, 0, 10)]
+                                   forState:UIControlStateHighlighted
+                                 barMetrics:UIBarMetricsLandscapePhone];
+
     }
 }
 
@@ -282,26 +307,41 @@
         }
 
         task.completed = !task.isCompleted;
-        [pressedCell setCompleted:task.completed animated:YES];
+
+        CGPoint pressedPoint = [sender locationInView:pressedCell];
+        CGPoint relativePressedPoint = CGPointMake(pressedPoint.x/pressedCell.bounds.size.width, pressedPoint.y/pressedCell.bounds.size.height);
+        self.stampCoordinates[pressedIndexPath.row] = [NSValue valueWithCGPoint:relativePressedPoint];
+
+        [pressedCell setCompleted:task.completed atRelativePoint:relativePressedPoint animated:YES];
 
         NSError *error;
         // Teh calendar of presetted instrunctional task is nil, so don't save them.
         if (task.calendar && ![self.model saveTask:task commit:NO error:&error]) {
-            [self alert:[error localizedDescription]];
+            [Utility alert:[error localizedDescription]];
         }
     }
 }
 
-- (void)configCellsBackground:(UITableViewCell *)cell
+- (void)configCellBackground:(UITableViewCell *)cell ByIndex:(NSUInteger)idx andOrientation:(UIInterfaceOrientation)orientation
 {
-    if (   self.interfaceOrientation == UIInterfaceOrientationLandscapeLeft
-        || self.interfaceOrientation == UIInterfaceOrientationLandscapeRight) {
-        cell.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"LandscapeCell.png"]];
-        cell.selectedBackgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"LandscapeCellSelected.png"]];
+    NSMutableString *imageFileName = [@"IndexBg-" mutableCopy];
+
+    if (UIInterfaceOrientationIsLandscape(orientation)) {
+        [imageFileName appendString:@"Landscape-"];
     } else {
-        cell.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"PortraitCell.png"]];
-        cell.selectedBackgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"PortraitCellSelected.png"]];
+        [imageFileName appendString:@"Portrait-"];
     }
+
+    [imageFileName appendFormat:@"%02d", idx + 1];
+
+
+    if (IS_WIDESCREEN) {
+        [imageFileName appendFormat:@"-568h"];
+    }
+    
+    cell.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:imageFileName]];
+    // TODO: Add the right selected bg image
+    cell.selectedBackgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:imageFileName]];
 }
 
 #pragma mark - Table view data source
@@ -313,8 +353,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (   self.interfaceOrientation == UIInterfaceOrientationLandscapeLeft
-        || self.interfaceOrientation == UIInterfaceOrientationLandscapeRight) {
+    if (UIInterfaceOrientationIsLandscape(self.interfaceOrientation)) {
         return self.tableView.bounds.size.height;
     } else {
         return self.tableView.bounds.size.height/TODAY_TASK_NUMER;
@@ -329,15 +368,19 @@
     // Configure the cell...
     if ((id)task == [NSNull null]) {
         cell.textLabel.text = @"";
-        cell.completed = NO;
+        [cell setCompleted:NO
+           atRelativePoint:[self.stampCoordinates[indexPath.row] CGPointValue]
+                  animated:NO];
     } else {
         cell.textLabel.text = task.title;
-        cell.completed = task.isCompleted;
+        [cell setCompleted:task.completed
+           atRelativePoint:[self.stampCoordinates[indexPath.row] CGPointValue]
+                  animated:NO];
     }
 
     cell.textLabel.backgroundColor = [UIColor clearColor];
 
-    [self configCellsBackground:cell];
+    [self configCellBackground:cell ByIndex:indexPath.row andOrientation:self.interfaceOrientation];
 
     return cell;
 }

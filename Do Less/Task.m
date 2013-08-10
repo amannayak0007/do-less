@@ -96,7 +96,6 @@
 
 - (EKReminder *)newTask
 {
-    EKReminder *task = [EKReminder reminderWithEventStore:self.eventStore];
-    return task;
+    return [EKReminder reminderWithEventStore:self.eventStore];
 }
 @end

@@ -20,4 +20,6 @@
 // The array of the tasks of today
 @property (strong, nonatomic) NSArray *todayTasks;
 
+// Nav bar background color index
+@property NSUInteger navBarColorIndex;
 @end
