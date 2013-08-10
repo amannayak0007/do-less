@@ -21,11 +21,4 @@
     [alert show];
 }
 
-+ (UIImageView*)appBackground
-{
-    return [[UIImageView alloc] initWithImage:
-            [[UIImage imageNamed:@"WoodTextureBg-Portrait"]
-             resizableImageWithCapInsets:UIEdgeInsetsZero]];
-}
-
 @end

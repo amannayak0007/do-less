@@ -12,5 +12,4 @@
 
 @interface Utility : NSObject
 + (void)alert:(NSString *)msg;
-+ (UIImageView *)appBackground;
 @end

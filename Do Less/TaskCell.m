@@ -56,14 +56,14 @@
 {
     [self.contentView removeConstraints:self.contentView.constraints];
     [self.contentView addConstraints:@[
-        [NSLayoutConstraint constraintWithItem:_stamp
+        [NSLayoutConstraint constraintWithItem:self.stamp
                                      attribute:NSLayoutAttributeCenterX
                                      relatedBy:NSLayoutRelationEqual
                                         toItem:self.contentView
                                      attribute:NSLayoutAttributeCenterX
                                     multiplier:2*point.x
                                       constant:0],
-        [NSLayoutConstraint constraintWithItem:_stamp
+        [NSLayoutConstraint constraintWithItem:self.stamp
                                      attribute:NSLayoutAttributeCenterY
                                      relatedBy:NSLayoutRelationEqual
                                         toItem:self.contentView
@@ -76,7 +76,7 @@
 - (void)setCompleted:(BOOL)completed atRelativePoint:(CGPoint)point animated:(BOOL)animated;
 {
     _completed = completed;
-    [self.contentView bringSubviewToFront:_stamp];
+    [self.contentView bringSubviewToFront:self.stamp];
 
     if (_completed) {
         [self updateStampConstrainsWithCGPoint:point];

@@ -14,7 +14,8 @@
 
 @property (strong, nonatomic) Task *model;
 @property (strong, nonatomic) UIImage *sectionHeaderBackground;
-@property (strong, nonatomic) UIImageView *background;
+@property (strong, nonatomic) UIImage *cellBackground;
+@property (strong, nonatomic) UIImage *cellSelectedBackground;
 
 @end
 
@@ -39,15 +40,20 @@
     return _sectionHeaderBackground;
 }
 
-- (UIImageView *)background
+- (UIImage *)cellBackground
 {
-    if (!_background) {
-        CGRect appFrame = [UIScreen mainScreen].applicationFrame;
-
-        _background = [Utility appBackground];
-        _background.frame = CGRectMake(0, -appFrame.size.height, appFrame.size.height*3, appFrame.size.height*3);
+    if (!_cellBackground) {
+        _cellBackground = [[UIImage imageNamed:@"ListPageBg"]resizableImageWithCapInsets:UIEdgeInsetsZero];
     }
-    return _background;
+    return _cellBackground;
+}
+
+- (UIImage *)cellSelectedBackground
+{
+    if (!_cellSelectedBackground) {
+        _cellSelectedBackground = [[UIImage imageNamed:@"ListHover"]resizableImageWithCapInsets:UIEdgeInsetsZero];
+    }
+    return _cellSelectedBackground;
 }
 
 #pragma mark - View Controller
@@ -59,15 +65,6 @@
     self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
     [self configNavBarBackgroundImage];
-
-    self.tableView.tableFooterView = [[UIView alloc] init];
-
-    [self.tableView insertSubview:self.background atIndex:0];
-}
-
-- (void)viewDidLayoutSubviews{
-    // Fixme: Wrong place !
-    [self.tableView sendSubviewToBack:self.background];
 }
 
 - (void)configNavBarBackgroundImage
@@ -147,11 +144,8 @@
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
     }
 
-    UIImage *bg =[[UIImage imageNamed:@"ListPageBg"]resizableImageWithCapInsets:UIEdgeInsetsZero];
-    UIImage *selectedBg = [[UIImage imageNamed:@"ListHover"]resizableImageWithCapInsets:UIEdgeInsetsZero];
-
-    cell.backgroundView = [[UIImageView alloc]initWithImage:bg];
-    cell.selectedBackgroundView = [[UIImageView alloc]initWithImage:selectedBg];
+    cell.backgroundView = [[UIImageView alloc]initWithImage:self.cellBackground];
+    cell.selectedBackgroundView = [[UIImageView alloc]initWithImage:self.cellSelectedBackground];
 
     return cell;
 }

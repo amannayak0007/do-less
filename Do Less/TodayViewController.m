@@ -164,8 +164,6 @@
                                              selector:@selector(didEnterBackground:)
                                                  name:UIApplicationDidEnterBackgroundNotification
                                                object:[UIApplication sharedApplication]];
-
-    self.tableView.backgroundView = [Utility appBackground];
 }
 
 - (void)didEnterBackground:(NSNotification *)notification
@@ -324,15 +322,15 @@
 
 - (void)configCellBackground:(UITableViewCell *)cell ByIndex:(NSUInteger)idx andOrientation:(UIInterfaceOrientation)orientation
 {
-    NSMutableString *imageFileName = [@"IndexBg-" mutableCopy];
+    NSMutableString *imageFileName = [@"IndexBg" mutableCopy];
 
     if (UIInterfaceOrientationIsLandscape(orientation)) {
-        [imageFileName appendString:@"Landscape-"];
+        [imageFileName appendString:@"-Landscape"];
     } else {
-        [imageFileName appendString:@"Portrait-"];
+        [imageFileName appendString:@"-Portrait"];
     }
 
-    [imageFileName appendFormat:@"%02d", idx + 1];
+    [imageFileName appendFormat:@"-%02d", idx + 1];
 
 
     if (IS_WIDESCREEN) {
