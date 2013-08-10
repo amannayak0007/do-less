@@ -164,6 +164,10 @@
                                              selector:@selector(didEnterBackground:)
                                                  name:UIApplicationDidEnterBackgroundNotification
                                                object:[UIApplication sharedApplication]];
+
+    self.tableView.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"WoodTextureBg-Bottom"]];
+    [self.tableView.backgroundView sizeToFit];
+    self.tableView.backgroundView.center = self.tableView.center;
 }
 
 - (void)didEnterBackground:(NSNotification *)notification

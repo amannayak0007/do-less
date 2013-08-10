@@ -14,7 +14,7 @@
 
 @property (strong, nonatomic) Task *model;
 @property (strong, nonatomic) UIImage *sectionHeaderBackground;
-@property (strong, nonatomic) UIImage *cellBackground;
+@property (strong, nonatomic) UIImage *tableBackground;
 @property (strong, nonatomic) UIImage *cellSelectedBackground;
 
 @end
@@ -40,12 +40,12 @@
     return _sectionHeaderBackground;
 }
 
-- (UIImage *)cellBackground
+- (UIImage *)tableBackground
 {
-    if (!_cellBackground) {
-        _cellBackground = [[UIImage imageNamed:@"ListPageBg"]resizableImageWithCapInsets:UIEdgeInsetsZero];
+    if (!_tableBackground) {
+        _tableBackground = [[UIImage imageNamed:@"ListPageBg"]resizableImageWithCapInsets:UIEdgeInsetsZero];
     }
-    return _cellBackground;
+    return _tableBackground;
 }
 
 - (UIImage *)cellSelectedBackground
@@ -65,6 +65,8 @@
     self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
     [self configNavBarBackgroundImage];
+
+    self.tableView.backgroundView = [[UIImageView alloc] initWithImage:self.tableBackground];
 }
 
 - (void)configNavBarBackgroundImage
@@ -144,7 +146,6 @@
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
     }
 
-    cell.backgroundView = [[UIImageView alloc]initWithImage:self.cellBackground];
     cell.selectedBackgroundView = [[UIImageView alloc]initWithImage:self.cellSelectedBackground];
 
     return cell;
@@ -185,6 +186,7 @@
     title.backgroundColor = [UIColor clearColor];
     title.textColor = [UIColor whiteColor];
     title.text = [self tableView:tableView titleForHeaderInSection:section];
+    title.font = [UIFont boldSystemFontOfSize:20];
 
     [header addSubview:title];
 

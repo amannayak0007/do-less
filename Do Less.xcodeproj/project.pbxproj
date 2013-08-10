@@ -49,22 +49,19 @@
 		D87F667017B648BB00258D76 /* SelectBannerBg-01-landscape@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D87F666717B648BB00258D76 /* SelectBannerBg-01-landscape@2x.png */; };
 		D87F667117B648BB00258D76 /* SelectBannerBg-02-landscape@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D87F666817B648BB00258D76 /* SelectBannerBg-02-landscape@2x.png */; };
 		D87F667217B648BB00258D76 /* SelectBannerBg-03-landscape@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D87F666917B648BB00258D76 /* SelectBannerBg-03-landscape@2x.png */; };
-		D87F667317B648BB00258D76 /* WoodTextureBg-Landscape-Bottom-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D87F666A17B648BB00258D76 /* WoodTextureBg-Landscape-Bottom-568h@2x.png */; };
-		D87F667417B648BB00258D76 /* WoodTextureBg-Landscape-Bottom@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D87F666B17B648BB00258D76 /* WoodTextureBg-Landscape-Bottom@2x.png */; };
-		D87F667517B648BB00258D76 /* WoodTextureBg-Landscape-Top-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D87F666C17B648BB00258D76 /* WoodTextureBg-Landscape-Top-568h@2x.png */; };
-		D87F667617B648BB00258D76 /* WoodTextureBg-Landscape-Top@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D87F666D17B648BB00258D76 /* WoodTextureBg-Landscape-Top@2x.png */; };
-		D87F667717B648BB00258D76 /* WoodTextureBg-Portrait-Bottom@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D87F666E17B648BB00258D76 /* WoodTextureBg-Portrait-Bottom@2x.png */; };
-		D87F667817B648BB00258D76 /* WoodTextureBg-Portrait-Top@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D87F666F17B648BB00258D76 /* WoodTextureBg-Portrait-Top@2x.png */; };
+		D87F667C17B6931200258D76 /* WoodTextureBg-Bottom@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D87F667917B6931000258D76 /* WoodTextureBg-Bottom@2x.png */; };
+		D87F667D17B6931200258D76 /* WoodTextureBg-Top-Landscape@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D87F667A17B6931100258D76 /* WoodTextureBg-Top-Landscape@2x.png */; };
+		D87F667E17B6931200258D76 /* WoodTextureBg-Top-Portrait@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D87F667B17B6931100258D76 /* WoodTextureBg-Top-Portrait@2x.png */; };
 		D885529717B0EDCA00206229 /* Utility.m in Sources */ = {isa = PBXBuildFile; fileRef = D885529617B0EDCA00206229 /* Utility.m */; };
 		D88552AD17B12D4B00206229 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = D885529817B12D4B00206229 /* Default.png */; };
 		D88552AE17B12D4B00206229 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D885529917B12D4B00206229 /* Default@2x.png */; };
-		D88552AF17B12D4B00206229 /* IndexBg-Landscape-01-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D885529A17B12D4B00206229 /* IndexBg-Landscape-01-568h@2x.png */; };
+		D88552AF17B12D4B00206229 /* IndexBg-Landscape-02-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D885529A17B12D4B00206229 /* IndexBg-Landscape-02-568h@2x.png */; };
 		D88552B017B12D4B00206229 /* IndexBg-Landscape-01.png in Resources */ = {isa = PBXBuildFile; fileRef = D885529B17B12D4B00206229 /* IndexBg-Landscape-01.png */; };
 		D88552B117B12D4B00206229 /* IndexBg-Landscape-01@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D885529C17B12D4B00206229 /* IndexBg-Landscape-01@2x.png */; };
-		D88552B217B12D4B00206229 /* IndexBg-Landscape-02-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D885529D17B12D4B00206229 /* IndexBg-Landscape-02-568h@2x.png */; };
+		D88552B217B12D4B00206229 /* IndexBg-Landscape-03-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D885529D17B12D4B00206229 /* IndexBg-Landscape-03-568h@2x.png */; };
 		D88552B317B12D4B00206229 /* IndexBg-Landscape-02.png in Resources */ = {isa = PBXBuildFile; fileRef = D885529E17B12D4B00206229 /* IndexBg-Landscape-02.png */; };
 		D88552B417B12D4B00206229 /* IndexBg-Landscape-02@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D885529F17B12D4B00206229 /* IndexBg-Landscape-02@2x.png */; };
-		D88552B517B12D4B00206229 /* IndexBg-Landscape-03-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D88552A017B12D4B00206229 /* IndexBg-Landscape-03-568h@2x.png */; };
+		D88552B517B12D4B00206229 /* IndexBg-Landscape-01-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D88552A017B12D4B00206229 /* IndexBg-Landscape-01-568h@2x.png */; };
 		D88552B617B12D4B00206229 /* IndexBg-Landscape-03.png in Resources */ = {isa = PBXBuildFile; fileRef = D88552A117B12D4B00206229 /* IndexBg-Landscape-03.png */; };
 		D88552B717B12D4B00206229 /* IndexBg-Landscape-03@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D88552A217B12D4B00206229 /* IndexBg-Landscape-03@2x.png */; };
 		D88552B817B12D4B00206229 /* IndexBg-Portrait-01-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D88552A317B12D4B00206229 /* IndexBg-Portrait-01-568h@2x.png */; };
@@ -148,23 +145,20 @@
 		D87F666717B648BB00258D76 /* SelectBannerBg-01-landscape@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SelectBannerBg-01-landscape@2x.png"; sourceTree = "<group>"; };
 		D87F666817B648BB00258D76 /* SelectBannerBg-02-landscape@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SelectBannerBg-02-landscape@2x.png"; sourceTree = "<group>"; };
 		D87F666917B648BB00258D76 /* SelectBannerBg-03-landscape@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SelectBannerBg-03-landscape@2x.png"; sourceTree = "<group>"; };
-		D87F666A17B648BB00258D76 /* WoodTextureBg-Landscape-Bottom-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WoodTextureBg-Landscape-Bottom-568h@2x.png"; sourceTree = "<group>"; };
-		D87F666B17B648BB00258D76 /* WoodTextureBg-Landscape-Bottom@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WoodTextureBg-Landscape-Bottom@2x.png"; sourceTree = "<group>"; };
-		D87F666C17B648BB00258D76 /* WoodTextureBg-Landscape-Top-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WoodTextureBg-Landscape-Top-568h@2x.png"; sourceTree = "<group>"; };
-		D87F666D17B648BB00258D76 /* WoodTextureBg-Landscape-Top@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WoodTextureBg-Landscape-Top@2x.png"; sourceTree = "<group>"; };
-		D87F666E17B648BB00258D76 /* WoodTextureBg-Portrait-Bottom@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WoodTextureBg-Portrait-Bottom@2x.png"; sourceTree = "<group>"; };
-		D87F666F17B648BB00258D76 /* WoodTextureBg-Portrait-Top@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WoodTextureBg-Portrait-Top@2x.png"; sourceTree = "<group>"; };
+		D87F667917B6931000258D76 /* WoodTextureBg-Bottom@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WoodTextureBg-Bottom@2x.png"; sourceTree = "<group>"; };
+		D87F667A17B6931100258D76 /* WoodTextureBg-Top-Landscape@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WoodTextureBg-Top-Landscape@2x.png"; sourceTree = "<group>"; };
+		D87F667B17B6931100258D76 /* WoodTextureBg-Top-Portrait@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WoodTextureBg-Top-Portrait@2x.png"; sourceTree = "<group>"; };
 		D885529517B0EDCA00206229 /* Utility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utility.h; sourceTree = "<group>"; };
 		D885529617B0EDCA00206229 /* Utility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utility.m; sourceTree = "<group>"; };
 		D885529817B12D4B00206229 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		D885529917B12D4B00206229 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
-		D885529A17B12D4B00206229 /* IndexBg-Landscape-01-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "IndexBg-Landscape-01-568h@2x.png"; sourceTree = "<group>"; };
+		D885529A17B12D4B00206229 /* IndexBg-Landscape-02-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "IndexBg-Landscape-02-568h@2x.png"; sourceTree = "<group>"; };
 		D885529B17B12D4B00206229 /* IndexBg-Landscape-01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "IndexBg-Landscape-01.png"; sourceTree = "<group>"; };
 		D885529C17B12D4B00206229 /* IndexBg-Landscape-01@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "IndexBg-Landscape-01@2x.png"; sourceTree = "<group>"; };
-		D885529D17B12D4B00206229 /* IndexBg-Landscape-02-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "IndexBg-Landscape-02-568h@2x.png"; sourceTree = "<group>"; };
+		D885529D17B12D4B00206229 /* IndexBg-Landscape-03-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "IndexBg-Landscape-03-568h@2x.png"; sourceTree = "<group>"; };
 		D885529E17B12D4B00206229 /* IndexBg-Landscape-02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "IndexBg-Landscape-02.png"; sourceTree = "<group>"; };
 		D885529F17B12D4B00206229 /* IndexBg-Landscape-02@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "IndexBg-Landscape-02@2x.png"; sourceTree = "<group>"; };
-		D88552A017B12D4B00206229 /* IndexBg-Landscape-03-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "IndexBg-Landscape-03-568h@2x.png"; sourceTree = "<group>"; };
+		D88552A017B12D4B00206229 /* IndexBg-Landscape-01-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "IndexBg-Landscape-01-568h@2x.png"; sourceTree = "<group>"; };
 		D88552A117B12D4B00206229 /* IndexBg-Landscape-03.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "IndexBg-Landscape-03.png"; sourceTree = "<group>"; };
 		D88552A217B12D4B00206229 /* IndexBg-Landscape-03@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "IndexBg-Landscape-03@2x.png"; sourceTree = "<group>"; };
 		D88552A317B12D4B00206229 /* IndexBg-Portrait-01-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "IndexBg-Portrait-01-568h@2x.png"; sourceTree = "<group>"; };
@@ -328,13 +322,13 @@
 				D8543CFA17B523BA009B6B51 /* Icon-Small@2x.png */,
 				D8543CFB17B523BA009B6B51 /* Icon.png */,
 				D85EC3E1173118FD009DA21D /* Icon@2x.png */,
-				D885529A17B12D4B00206229 /* IndexBg-Landscape-01-568h@2x.png */,
+				D88552A017B12D4B00206229 /* IndexBg-Landscape-01-568h@2x.png */,
 				D885529B17B12D4B00206229 /* IndexBg-Landscape-01.png */,
 				D885529C17B12D4B00206229 /* IndexBg-Landscape-01@2x.png */,
-				D885529D17B12D4B00206229 /* IndexBg-Landscape-02-568h@2x.png */,
+				D885529A17B12D4B00206229 /* IndexBg-Landscape-02-568h@2x.png */,
 				D885529E17B12D4B00206229 /* IndexBg-Landscape-02.png */,
 				D885529F17B12D4B00206229 /* IndexBg-Landscape-02@2x.png */,
-				D88552A017B12D4B00206229 /* IndexBg-Landscape-03-568h@2x.png */,
+				D885529D17B12D4B00206229 /* IndexBg-Landscape-03-568h@2x.png */,
 				D88552A117B12D4B00206229 /* IndexBg-Landscape-03.png */,
 				D88552A217B12D4B00206229 /* IndexBg-Landscape-03@2x.png */,
 				D88552A317B12D4B00206229 /* IndexBg-Portrait-01-568h@2x.png */,
@@ -366,12 +360,9 @@
 				D8543F6817B24D6C0091E3E8 /* SelectBannerBg-03-portrait@2x.png */,
 				D8CA028E179D549B00648313 /* Stamp.wav */,
 				D85AA502179A809B005F228C /* Stamp@2x.png */,
-				D87F666A17B648BB00258D76 /* WoodTextureBg-Landscape-Bottom-568h@2x.png */,
-				D87F666B17B648BB00258D76 /* WoodTextureBg-Landscape-Bottom@2x.png */,
-				D87F666C17B648BB00258D76 /* WoodTextureBg-Landscape-Top-568h@2x.png */,
-				D87F666D17B648BB00258D76 /* WoodTextureBg-Landscape-Top@2x.png */,
-				D87F666E17B648BB00258D76 /* WoodTextureBg-Portrait-Bottom@2x.png */,
-				D87F666F17B648BB00258D76 /* WoodTextureBg-Portrait-Top@2x.png */,
+				D87F667917B6931000258D76 /* WoodTextureBg-Bottom@2x.png */,
+				D87F667A17B6931100258D76 /* WoodTextureBg-Top-Landscape@2x.png */,
+				D87F667B17B6931100258D76 /* WoodTextureBg-Top-Portrait@2x.png */,
 			);
 			name = Assets;
 			path = "Do Less/Assets";
@@ -481,13 +472,13 @@
 				D85EC3E2173118FD009DA21D /* Icon@2x.png in Resources */,
 				D88552AD17B12D4B00206229 /* Default.png in Resources */,
 				D88552AE17B12D4B00206229 /* Default@2x.png in Resources */,
-				D88552AF17B12D4B00206229 /* IndexBg-Landscape-01-568h@2x.png in Resources */,
+				D88552AF17B12D4B00206229 /* IndexBg-Landscape-02-568h@2x.png in Resources */,
 				D88552B017B12D4B00206229 /* IndexBg-Landscape-01.png in Resources */,
 				D88552B117B12D4B00206229 /* IndexBg-Landscape-01@2x.png in Resources */,
-				D88552B217B12D4B00206229 /* IndexBg-Landscape-02-568h@2x.png in Resources */,
+				D88552B217B12D4B00206229 /* IndexBg-Landscape-03-568h@2x.png in Resources */,
 				D88552B317B12D4B00206229 /* IndexBg-Landscape-02.png in Resources */,
 				D88552B417B12D4B00206229 /* IndexBg-Landscape-02@2x.png in Resources */,
-				D88552B517B12D4B00206229 /* IndexBg-Landscape-03-568h@2x.png in Resources */,
+				D88552B517B12D4B00206229 /* IndexBg-Landscape-01-568h@2x.png in Resources */,
 				D88552B617B12D4B00206229 /* IndexBg-Landscape-03.png in Resources */,
 				D88552B717B12D4B00206229 /* IndexBg-Landscape-03@2x.png in Resources */,
 				D88552B817B12D4B00206229 /* IndexBg-Portrait-01-568h@2x.png in Resources */,
@@ -524,12 +515,9 @@
 				D87F667017B648BB00258D76 /* SelectBannerBg-01-landscape@2x.png in Resources */,
 				D87F667117B648BB00258D76 /* SelectBannerBg-02-landscape@2x.png in Resources */,
 				D87F667217B648BB00258D76 /* SelectBannerBg-03-landscape@2x.png in Resources */,
-				D87F667317B648BB00258D76 /* WoodTextureBg-Landscape-Bottom-568h@2x.png in Resources */,
-				D87F667417B648BB00258D76 /* WoodTextureBg-Landscape-Bottom@2x.png in Resources */,
-				D87F667517B648BB00258D76 /* WoodTextureBg-Landscape-Top-568h@2x.png in Resources */,
-				D87F667617B648BB00258D76 /* WoodTextureBg-Landscape-Top@2x.png in Resources */,
-				D87F667717B648BB00258D76 /* WoodTextureBg-Portrait-Bottom@2x.png in Resources */,
-				D87F667817B648BB00258D76 /* WoodTextureBg-Portrait-Top@2x.png in Resources */,
+				D87F667C17B6931200258D76 /* WoodTextureBg-Bottom@2x.png in Resources */,
+				D87F667D17B6931200258D76 /* WoodTextureBg-Top-Landscape@2x.png in Resources */,
+				D87F667E17B6931200258D76 /* WoodTextureBg-Top-Portrait@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
