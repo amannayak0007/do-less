@@ -18,7 +18,6 @@
 				<string>Icon-Small.png</string>
 				<string>Icon.png</string>
 				<string>Icon@2x.png</string>
-				<string>iTunesArtwork</string>
 			</array>
 			<key>UIPrerenderedIcon</key>
 			<true/>

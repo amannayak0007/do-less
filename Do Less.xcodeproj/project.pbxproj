@@ -27,7 +27,6 @@
 		D825DA7A17B92F52006D4011 /* WoodTextureBg-Bottom.png in Resources */ = {isa = PBXBuildFile; fileRef = D825DA6C17B92F4F006D4011 /* WoodTextureBg-Bottom.png */; };
 		D825DA7B17B92F52006D4011 /* WoodTextureBg-Top-Landscape.png in Resources */ = {isa = PBXBuildFile; fileRef = D825DA6D17B92F50006D4011 /* WoodTextureBg-Top-Landscape.png */; };
 		D825DA7C17B92F52006D4011 /* WoodTextureBg-Top-Portrait.png in Resources */ = {isa = PBXBuildFile; fileRef = D825DA6E17B92F51006D4011 /* WoodTextureBg-Top-Portrait.png */; };
-		D825DA7E17B93596006D4011 /* iTunesArtwork in Resources */ = {isa = PBXBuildFile; fileRef = D825DA7D17B93595006D4011 /* iTunesArtwork */; };
 		D850080C17451976008AE1D4 /* TaskSelectionTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D850080B17451976008AE1D4 /* TaskSelectionTableViewController.m */; };
 		D8543D0217B523BA009B6B51 /* Icon-Small.png in Resources */ = {isa = PBXBuildFile; fileRef = D8543CF917B523BA009B6B51 /* Icon-Small.png */; };
 		D8543D0317B523BA009B6B51 /* Icon-Small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D8543CFA17B523BA009B6B51 /* Icon-Small@2x.png */; };
@@ -127,7 +126,6 @@
 		D825DA6C17B92F4F006D4011 /* WoodTextureBg-Bottom.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WoodTextureBg-Bottom.png"; sourceTree = "<group>"; };
 		D825DA6D17B92F50006D4011 /* WoodTextureBg-Top-Landscape.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WoodTextureBg-Top-Landscape.png"; sourceTree = "<group>"; };
 		D825DA6E17B92F51006D4011 /* WoodTextureBg-Top-Portrait.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WoodTextureBg-Top-Portrait.png"; sourceTree = "<group>"; };
-		D825DA7D17B93595006D4011 /* iTunesArtwork */ = {isa = PBXFileReference; lastKnownFileType = file; path = iTunesArtwork; sourceTree = "<group>"; };
 		D850080A17451976008AE1D4 /* TaskSelectionTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = TaskSelectionTableViewController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		D850080B17451976008AE1D4 /* TaskSelectionTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = TaskSelectionTableViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		D8543CF917B523BA009B6B51 /* Icon-Small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small.png"; sourceTree = "<group>"; };
@@ -374,7 +372,6 @@
 				D88552AB17B12D4B00206229 /* IndexBg-Portrait-03@2x.png */,
 				D825DA6517B92F4A006D4011 /* IndexHoverBg.png */,
 				D825DA5F17B91001006D4011 /* IndexHoverBg@2x.png */,
-				D825DA7D17B93595006D4011 /* iTunesArtwork */,
 				D8543F6217B24D6C0091E3E8 /* ListHeaderBg.png */,
 				D8543F6317B24D6C0091E3E8 /* ListHeaderBg@2x.png */,
 				D825DA6617B92F4B006D4011 /* ListHover.png */,
@@ -573,7 +570,6 @@
 				D825DA7A17B92F52006D4011 /* WoodTextureBg-Bottom.png in Resources */,
 				D825DA7B17B92F52006D4011 /* WoodTextureBg-Top-Landscape.png in Resources */,
 				D825DA7C17B92F52006D4011 /* WoodTextureBg-Top-Portrait.png in Resources */,
-				D825DA7E17B93596006D4011 /* iTunesArtwork in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
