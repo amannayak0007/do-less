@@ -40,10 +40,13 @@
 - (void)loadTodayTasks
 {
     if (![[NSUserDefaults standardUserDefaults] boolForKey:@"HasLaunchedOnce"]) {
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"HasLaunchedOnce"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+
         EKCalendar *doLessList = [EKCalendar calendarForEntityType:EKEntityTypeReminder eventStore:self.model.eventStore];
         doLessList.title = @"Do Less";
         doLessList.source = self.model.eventStore.defaultCalendarForNewReminders.source;
-        
+
         EKReminder *task1 = [EKReminder reminderWithEventStore:self.model.eventStore];
         task1.title = @"Tap to select task";
         task1.calendar = doLessList;
@@ -81,9 +84,6 @@
         }
 
         self.todayTasks = [@[task1, task2, task3] mutableCopy];
-
-        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"HasLaunchedOnce"];
-        [[NSUserDefaults standardUserDefaults] synchronize];
     }
 
     [self.tableView reloadData];
@@ -379,8 +379,7 @@
     }
     
     cell.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:imageFileName]];
-    // TODO: Add the right selected bg image
-    cell.selectedBackgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:imageFileName]];
+    cell.selectedBackgroundView = [[UIImageView alloc] initWithImage:[[UIImage imageNamed:@"IndexHoverBg"] resizableImageWithCapInsets:UIEdgeInsetsZero]];
 }
 
 #pragma mark - Table view data source

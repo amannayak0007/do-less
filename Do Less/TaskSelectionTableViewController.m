@@ -62,8 +62,8 @@
 {
     [super viewDidLoad];
 
-    self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    
+//    self.navigationItem.rightBarButtonItem = self.editButtonItem;
+
     [self configNavBarBackgroundImage];
 
     self.tableView.backgroundView = [[UIImageView alloc] initWithImage:self.tableBackground];
@@ -150,19 +150,19 @@
     return cell;
 }
 
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        EKReminder *task = [self.model taskWithIndexPath:indexPath];
-
-        NSError *error;
-        if ([self.model.eventStore removeReminder:task commit:YES error:&error]) {
-            [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationRight];
-        } else {
-            [Common alert:[error localizedDescription]];
-        }
-    }
-}
+//- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    if (editingStyle == UITableViewCellEditingStyleDelete) {
+//        EKReminder *task = [self.model taskWithIndexPath:indexPath];
+//
+//        NSError *error;
+//        if ([self.model.eventStore removeReminder:task commit:YES error:&error]) {
+//            [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationRight];
+//        } else {
+//            [Common alert:[error localizedDescription]];
+//        }
+//    }
+//}
 
 #pragma mark - Table view delegate
 
