@@ -8,7 +8,7 @@
 
 #import "Task.h"
 #import "TaskSelectionTableViewController.h"
-#import "Utility.h"
+#import "Common.h"
 
 @interface TaskSelectionTableViewController ()
 
@@ -101,8 +101,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    EKCalendar *list = self.model.lists[section];
-    NSArray *tasks = [self.model tasksInList:list];
+    NSArray *tasks = [self.model tasksWithSection:section];
     return [tasks count];
 }
 
@@ -157,10 +156,10 @@
         EKReminder *task = [self.model taskWithIndexPath:indexPath];
 
         NSError *error;
-        if ([self.model removeTask:task commit:YES error:&error]) {
+        if ([self.model.eventStore removeReminder:task commit:YES error:&error]) {
             [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationRight];
         } else {
-            [Utility alert:[error localizedDescription]];
+            [Common alert:[error localizedDescription]];
         }
     }
 }
@@ -171,9 +170,7 @@
 {
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 
-    EKCalendar *list = self.model.lists[indexPath.section];
-    NSArray *tasks = [self.model tasksInList:list];
-    self.selectedTask = tasks[indexPath.row];
+    self.selectedTask = [self.model taskWithIndexPath:indexPath];
 
     [self performSegueWithIdentifier:@"BackToTasksToday" sender:self];
 }
@@ -187,6 +184,8 @@
     title.textColor = [UIColor whiteColor];
     title.text = [self tableView:tableView titleForHeaderInSection:section];
     title.font = [UIFont boldSystemFontOfSize:20];
+    title.shadowColor = [Common shadowColor];
+    title.shadowOffset = [Common shadowOffset];
 
     [header addSubview:title];
 
@@ -196,8 +195,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    EKCalendar *list = self.model.lists[section];
-    NSArray *tasks = [self.model tasksInList:list];
+    NSArray *tasks = [self.model tasksWithSection:section];
     return [tasks count] == 0 ? 0 : self.sectionHeaderBackground.size.height;
 }
 

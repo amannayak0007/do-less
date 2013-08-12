@@ -13,20 +13,11 @@
 
 @interface Task : NSObject
 
+// The event store
+@property (strong, nonatomic, readonly) EKEventStore *eventStore;
+
 // Task lists
 @property (strong, nonatomic, readonly) NSArray *lists;
-
-// Commit all the changes
-- (BOOL)commit:(NSError **)error;
-
-// Save a task
-- (BOOL)saveTask:(EKReminder *)task commit:(BOOL)commit error:(NSError **)error;
-
-// Remove a task
-- (BOOL)removeTask:(EKReminder *)task commit:(BOOL)commit error:(NSError **)error;
-
-// Load a task
-- (EKReminder *)loadTaskWithIdentifier:(NSString *)taskId;
 
 // Get all the tasks in the given list
 - (NSArray *)tasksInList:(EKCalendar *)list;
@@ -34,12 +25,7 @@
 // Get task by index path
 - (EKReminder *)taskWithIndexPath:(NSIndexPath *)indexPath;
 
-// Register notification
-- (void)addObserver:(id)notificationObserver selector:(SEL)notificationSelector;
+// Get task by section
+- (NSArray *)tasksWithSection:(NSInteger)section;
 
-// Request access to user's reminders
-- (void)requestAccessWithCompletion:(EKEventStoreRequestAccessCompletionHandler)completion;
-
-// Create a new task
-- (EKReminder *)newTask;
 @end

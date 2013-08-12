@@ -7,7 +7,7 @@
 //
 
 #import "TaskTableView.h"
-#import "Utility.h"
+#import "Common.h"
 
 @interface TaskTableView ()
 @property (strong, nonatomic) UIImageView *outerHeaderView;
@@ -27,7 +27,9 @@
 {
     self = [super initWithCoder:aDecoder];
 
-    [self addSubview: self.outerHeaderView];
+    if (self) {
+        [self addSubview: self.outerHeaderView];
+    }
 
     return self;
 }

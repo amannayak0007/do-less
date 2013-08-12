@@ -6,9 +6,9 @@
 //  Copyright (c) 2013年 Roc. All rights reserved.
 //
 
-#import "Utility.h"
+#import "Common.h"
 
-@implementation Utility
+@implementation Common
 
 + (void)alert:(NSString *)msg
 {
@@ -19,6 +19,16 @@
                                           cancelButtonTitle:@"OK"
                                           otherButtonTitles:nil];
     [alert show];
+}
+
++ (UIColor *)shadowColor
+{
+    return [UIColor colorWithRed:67/255.0 green:67/255.0 blue:67/255.0 alpha:0.75];
+}
+
++ (CGSize)shadowOffset
+{
+    return CGSizeMake(1, 1);
 }
 
 @end

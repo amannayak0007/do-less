@@ -10,6 +10,8 @@
 
 #define IS_WIDESCREEN (UI_USER_INTERFACE_IDIOM()==UIUserInterfaceIdiomPhone && [UIScreen mainScreen].bounds.size.height==568)
 
-@interface Utility : NSObject
+@interface Common : NSObject
 + (void)alert:(NSString *)msg;
++ (UIColor *)shadowColor;
++ (CGSize)shadowOffset;
 @end

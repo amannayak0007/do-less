@@ -25,13 +25,22 @@
     return CGPointMake(0.333, 0.333);
 }
 
+- (id)initWithCoder:(NSCoder *)aDecoder
+{
+    self = [super initWithCoder:aDecoder];
+
+    if (self) {
+        [self.contentView addSubview:self.stamp];
+    }
+
+    return self;
+}
+
 - (UIImageView *)stamp
 {
     if (!_stamp) {
         _stamp = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Stamp.png"]];
         [_stamp setTranslatesAutoresizingMaskIntoConstraints:NO];
-
-        [self.contentView addSubview:_stamp];
     }
     return _stamp;
 }

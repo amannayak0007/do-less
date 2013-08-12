@@ -10,9 +10,6 @@
 
 @interface Task()
 
-// The event store
-@property (strong, nonatomic, readonly) EKEventStore *eventStore;
-
 @end
 
 @implementation Task
@@ -31,21 +28,6 @@
 - (NSArray *)lists
 {
     return [self.eventStore calendarsForEntityType:EKEntityTypeReminder];
-}
-
-- (EKReminder *)loadTaskWithIdentifier:(NSString *)taskId
-{
-    return (EKReminder *)[self.eventStore calendarItemWithIdentifier:taskId];
-}
-
-- (BOOL)saveTask:(EKReminder *)task commit:(BOOL)commit error:(NSError *__autoreleasing *)error
-{
-    return [self.eventStore saveReminder:task commit:NO error:error];
-}
-
-- (BOOL)removeTask:(EKReminder *)task commit:(BOOL)commit error:(NSError *__autoreleasing *)error
-{
-    return [self.eventStore removeReminder:task commit:commit error:error];
 }
 
 - (NSArray *)tasksInList:(EKCalendar *)list
@@ -71,31 +53,14 @@
 
 - (EKReminder *)taskWithIndexPath:(NSIndexPath *)indexPath
 {
-    EKCalendar *list = self.lists[indexPath.section];
-    NSArray *tasks = [self tasksInList:list];
+    NSArray *tasks = [self tasksWithSection:indexPath.section];
     return tasks[indexPath.row];
 }
 
-- (void)addObserver:(id)notificationObserver selector:(SEL)notificationSelector
+- (NSArray *)tasksWithSection:(NSInteger)section
 {
-    [[NSNotificationCenter defaultCenter] addObserver:notificationObserver
-                                             selector:notificationSelector
-                                                 name:EKEventStoreChangedNotification
-                                               object:self.eventStore];
+    EKCalendar *list = self.lists[section];
+    return [self tasksInList:list];
 }
 
-- (void)requestAccessWithCompletion:(EKEventStoreRequestAccessCompletionHandler)completion
-{
-    [self.eventStore requestAccessToEntityType:EKEntityTypeReminder completion:completion];
-}
-
-- (BOOL)commit:(NSError *__autoreleasing *)error
-{
-    return [self.eventStore commit:error];
-}
-
-- (EKReminder *)newTask
-{
-    return [EKReminder reminderWithEventStore:self.eventStore];
-}
 @end

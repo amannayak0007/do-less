@@ -10,7 +10,7 @@
 #import "TaskSelectionTableViewController.h"
 #import "TodayViewController.h"
 #import "TaskCell.h"
-#import "Utility.h"
+#import "Common.h"
 
 #define TODAY_TASK_NUMER 3
 
@@ -37,38 +37,72 @@
     return _model;
 }
 
+- (void)loadTodayTasks
+{
+    if (![[NSUserDefaults standardUserDefaults] boolForKey:@"HasLaunchedOnce"]) {
+        EKCalendar *doLessList = [EKCalendar calendarForEntityType:EKEntityTypeReminder eventStore:self.model.eventStore];
+        doLessList.title = @"Do Less";
+        doLessList.source = self.model.eventStore.defaultCalendarForNewReminders.source;
+        
+        EKReminder *task1 = [EKReminder reminderWithEventStore:self.model.eventStore];
+        task1.title = @"Tap to select task";
+        task1.calendar = doLessList;
+        
+        EKReminder *task2 = [EKReminder reminderWithEventStore:self.model.eventStore];
+        task2.title = @"Long press to toggle completion";
+        task2.calendar = doLessList;
+        
+        EKReminder *task3 = [EKReminder reminderWithEventStore:self.model.eventStore];
+        task3.title = @"Shake to dismiss tasks";
+        task3.calendar = doLessList;
+        
+        EKReminder *task4 = [EKReminder reminderWithEventStore:self.model.eventStore];
+        task4.title = @"Use the Reminder app to manage your tasks";
+        task4.calendar = doLessList;
+        
+        NSError *error;
+        if (![self.model.eventStore saveCalendar:doLessList commit:YES error:&error]) {
+            NSLog(@"%@", [error localizedDescription]);
+        }
+        if (![self.model.eventStore saveReminder:task1 commit:NO error:&error]) {
+            NSLog(@"%@", [error localizedDescription]);
+        }
+        if (![self.model.eventStore saveReminder:task2 commit:NO error:&error]) {
+            NSLog(@"%@", [error localizedDescription]);
+        }
+        if (![self.model.eventStore saveReminder:task3 commit:NO error:&error]) {
+            NSLog(@"%@", [error localizedDescription]);
+        }
+        if (![self.model.eventStore saveReminder:task4 commit:NO error:&error]) {
+            NSLog(@"%@", [error localizedDescription]);
+        }
+        if (![self.model.eventStore commit:&error]) {
+            NSLog(@"%@", [error localizedDescription]);
+        }
+
+        self.todayTasks = [@[task1, task2, task3] mutableCopy];
+
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"HasLaunchedOnce"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+    }
+
+    [self.tableView reloadData];
+}
+
 - (NSMutableArray *)todayTasks
 {
     if (!_todayTasks) {
         _todayTasks = [[NSMutableArray alloc] initWithCapacity:TODAY_TASK_NUMER];
-
-        if ([[NSUserDefaults standardUserDefaults] boolForKey:@"HasLaunchedOnce"])
-        {
-            for (NSUInteger i=0; i<TODAY_TASK_NUMER; i++) {
-                NSString *taskId = [[NSUserDefaults standardUserDefaults] stringForKey:[@"Task" stringByAppendingFormat:@"%d", i]];
-                EKReminder *task = (EKReminder *)[self.model loadTaskWithIdentifier:taskId];
-
-                if (task) {
-                    _todayTasks[i] = task;
-                } else {
-                    _todayTasks[i] = [NSNull null];
-                }
+        
+        for (NSUInteger i=0; i<TODAY_TASK_NUMER; i++) {
+            NSString *taskId = [[NSUserDefaults standardUserDefaults] stringForKey:[@"Task" stringByAppendingFormat:@"%d", i]];
+            EKReminder *task = (EKReminder *)[self.model.eventStore calendarItemWithIdentifier:taskId];
+            
+            if (task) {
+                _todayTasks[i] = task;
+            } else {
+                _todayTasks[i] = [NSNull null];
             }
-        } else {
-            [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"HasLaunchedOnce"];
-            [[NSUserDefaults standardUserDefaults] synchronize];
-
-            EKReminder *tempTask = [self.model newTask];
-            tempTask.title = @"Tap to select task";
-            _todayTasks[0] = tempTask;
-
-            tempTask = [self.model newTask];
-            tempTask.title = @"Long press to toggle completion";
-            _todayTasks[1] = tempTask;
-
-            tempTask = [self.model newTask];
-            tempTask.title = @"Shake to dismiss tasks";
-            _todayTasks[2] = tempTask;
         }
     }
 
@@ -106,6 +140,13 @@
     }
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+
+    [self becomeFirstResponder];
+}
+
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
@@ -113,16 +154,9 @@
     [self resignFirstResponder];
 
     NSError *error;
-    if (![self.model commit:&error]) {
-        [Utility alert:[error localizedDescription]];
+    if (![self.model.eventStore commit:&error]) {
+        [Common alert:[error localizedDescription]];
     }
-}
-
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-
-    [self becomeFirstResponder];
 }
 
 - (void)viewDidLoad
@@ -133,19 +167,19 @@
         case EKAuthorizationStatusDenied:
         case EKAuthorizationStatusRestricted:
         {
-            [Utility alert: @"To let Do Less work properly, please authorize it to access your reminders."];
+            [Common alert: @"To let Do Less work properly, please authorize it to access your reminders."];
             break;
         }
         case EKAuthorizationStatusNotDetermined:
         {
-            [self.model requestAccessWithCompletion:^(BOOL granted, NSError *error) {
+            [self.model.eventStore requestAccessToEntityType:EKEntityTypeReminder completion:^(BOOL granted, NSError *error) {
                 dispatch_async(dispatch_get_main_queue(), ^{
                     if (granted && !error) {
-                        [self.tableView reloadData];
+                        [self loadTodayTasks];
                     } else if (!granted) {
-                        [Utility alert: @"To let Do Less work properly, please authorize it to access your reminders."];
+                        [Common alert: @"To let Do Less work properly, please authorize it to access your reminders."];
                     } else {
-                        [Utility alert:[error localizedDescription]];
+                        [Common alert:[error localizedDescription]];
                     }
                 });
             }];
@@ -154,12 +188,16 @@
         case EKAuthorizationStatusAuthorized:
         default:
         {
-            [self.tableView reloadData];
+            [self loadTodayTasks];
             break;
         }
     }
 
-    [self.model addObserver:self selector:@selector(eventStoreChanged:)];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(eventStoreChanged:)
+                                                 name:EKEventStoreChangedNotification
+                                               object:self.model.eventStore];
+    
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(didEnterBackground:)
                                                  name:UIApplicationDidEnterBackgroundNotification
@@ -186,7 +224,7 @@
 
     // Commit all the changes
     NSError *error;
-    if (![self.model commit:&error]) {
+    if (![self.model.eventStore commit:&error]) {
         NSLog(@"%@", [error localizedDescription]);
     }
 
@@ -317,9 +355,8 @@
         [pressedCell setCompleted:task.completed atRelativePoint:relativePressedPoint animated:YES];
 
         NSError *error;
-        // Teh calendar of presetted instrunctional task is nil, so don't save them.
-        if (task.calendar && ![self.model saveTask:task commit:NO error:&error]) {
-            [Utility alert:[error localizedDescription]];
+        if (![self.model.eventStore saveReminder:task commit:NO error:&error]) {
+            [Common alert:[error localizedDescription]];
         }
     }
 }
@@ -381,6 +418,8 @@
     }
 
     cell.textLabel.backgroundColor = [UIColor clearColor];
+    cell.textLabel.shadowColor = [Common shadowColor];
+    cell.textLabel.shadowOffset = [Common shadowOffset];
 
     [self configCellBackground:cell ByIndex:indexPath.row andOrientation:self.interfaceOrientation];
 
