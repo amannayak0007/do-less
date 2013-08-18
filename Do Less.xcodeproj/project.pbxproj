@@ -10,7 +10,6 @@
 		D823313E179F7DDB00AA90A1 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8656C0D172F932800C0AFDE /* SenTestingKit.framework */; };
 		D823313F179F7DDB00AA90A1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8656BE6172F932800C0AFDE /* UIKit.framework */; };
 		D8233140179F7DDB00AA90A1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8656BE8172F932800C0AFDE /* Foundation.framework */; };
-		D8233146179F7DDB00AA90A1 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D8233144179F7DDB00AA90A1 /* InfoPlist.strings */; };
 		D8233149179F7DDB00AA90A1 /* ApplicationUnitTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D8233148179F7DDB00AA90A1 /* ApplicationUnitTests.m */; };
 		D825DA6017B91001006D4011 /* IndexHoverBg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D825DA5F17B91001006D4011 /* IndexHoverBg@2x.png */; };
 		D825DA6F17B92F52006D4011 /* Button-Active.png in Resources */ = {isa = PBXBuildFile; fileRef = D825DA6117B92F48006D4011 /* Button-Active.png */; };
@@ -25,8 +24,11 @@
 		D825DA7817B92F52006D4011 /* SelectBannerBg-03-landscape.png in Resources */ = {isa = PBXBuildFile; fileRef = D825DA6A17B92F4E006D4011 /* SelectBannerBg-03-landscape.png */; };
 		D825DA7917B92F52006D4011 /* Stamp.png in Resources */ = {isa = PBXBuildFile; fileRef = D825DA6B17B92F4F006D4011 /* Stamp.png */; };
 		D825DA7A17B92F52006D4011 /* WoodTextureBg-Bottom.png in Resources */ = {isa = PBXBuildFile; fileRef = D825DA6C17B92F4F006D4011 /* WoodTextureBg-Bottom.png */; };
-		D825DA7B17B92F52006D4011 /* WoodTextureBg-Top-Landscape.png in Resources */ = {isa = PBXBuildFile; fileRef = D825DA6D17B92F50006D4011 /* WoodTextureBg-Top-Landscape.png */; };
-		D825DA7C17B92F52006D4011 /* WoodTextureBg-Top-Portrait.png in Resources */ = {isa = PBXBuildFile; fileRef = D825DA6E17B92F51006D4011 /* WoodTextureBg-Top-Portrait.png */; };
+		D83A628C17BF30FE001666DE /* WoodTextureBg-Top-Portrait@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D83A628E17BF30FE001666DE /* WoodTextureBg-Top-Portrait@2x.png */; };
+		D83A629117BF3159001666DE /* WoodTextureBg-Top-Portrait.png in Resources */ = {isa = PBXBuildFile; fileRef = D83A629317BF3159001666DE /* WoodTextureBg-Top-Portrait.png */; };
+		D83A629517BF3165001666DE /* WoodTextureBg-Top-Landscape@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D83A629717BF3165001666DE /* WoodTextureBg-Top-Landscape@2x.png */; };
+		D83A629917BF318A001666DE /* WoodTextureBg-Top-Landscape.png in Resources */ = {isa = PBXBuildFile; fileRef = D83A629B17BF318A001666DE /* WoodTextureBg-Top-Landscape.png */; };
+		D83A62A217BF31FB001666DE /* TodayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D83A62A117BF31FB001666DE /* TodayViewController.m */; };
 		D850080C17451976008AE1D4 /* TaskSelectionTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D850080B17451976008AE1D4 /* TaskSelectionTableViewController.m */; };
 		D8543D0217B523BA009B6B51 /* Icon-Small.png in Resources */ = {isa = PBXBuildFile; fileRef = D8543CF917B523BA009B6B51 /* Icon-Small.png */; };
 		D8543D0317B523BA009B6B51 /* Icon-Small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D8543CFA17B523BA009B6B51 /* Icon-Small@2x.png */; };
@@ -56,15 +58,13 @@
 		D8656BF7172F932800C0AFDE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D8656BF6172F932800C0AFDE /* AppDelegate.m */; };
 		D8656BFD172F932800C0AFDE /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D8656BFC172F932800C0AFDE /* Default-568h@2x.png */; };
 		D8656C00172F932800C0AFDE /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D8656BFE172F932800C0AFDE /* MainStoryboard.storyboard */; };
-		D8656C03172F932800C0AFDE /* TodayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D8656C02172F932800C0AFDE /* TodayViewController.m */; };
 		D8656C25172F97BD00C0AFDE /* EventKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8656C24172F97BD00C0AFDE /* EventKit.framework */; };
 		D8656C28172F9A2C00C0AFDE /* Task.m in Sources */ = {isa = PBXBuildFile; fileRef = D8656C27172F9A2C00C0AFDE /* Task.m */; };
+		D87D17BB17C08D9700DD7FCB /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D87D17B917C08D9700DD7FCB /* Localizable.strings */; };
 		D87F667017B648BB00258D76 /* SelectBannerBg-01-landscape@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D87F666717B648BB00258D76 /* SelectBannerBg-01-landscape@2x.png */; };
 		D87F667117B648BB00258D76 /* SelectBannerBg-02-landscape@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D87F666817B648BB00258D76 /* SelectBannerBg-02-landscape@2x.png */; };
 		D87F667217B648BB00258D76 /* SelectBannerBg-03-landscape@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D87F666917B648BB00258D76 /* SelectBannerBg-03-landscape@2x.png */; };
 		D87F667C17B6931200258D76 /* WoodTextureBg-Bottom@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D87F667917B6931000258D76 /* WoodTextureBg-Bottom@2x.png */; };
-		D87F667D17B6931200258D76 /* WoodTextureBg-Top-Landscape@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D87F667A17B6931100258D76 /* WoodTextureBg-Top-Landscape@2x.png */; };
-		D87F667E17B6931200258D76 /* WoodTextureBg-Top-Portrait@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D87F667B17B6931100258D76 /* WoodTextureBg-Top-Portrait@2x.png */; };
 		D885529717B0EDCA00206229 /* Common.m in Sources */ = {isa = PBXBuildFile; fileRef = D885529617B0EDCA00206229 /* Common.m */; };
 		D88552AD17B12D4B00206229 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = D885529817B12D4B00206229 /* Default.png */; };
 		D88552AE17B12D4B00206229 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D885529917B12D4B00206229 /* Default@2x.png */; };
@@ -107,7 +107,6 @@
 /* Begin PBXFileReference section */
 		D823313D179F7DDB00AA90A1 /* ApplicationUnitTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ApplicationUnitTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8233143179F7DDB00AA90A1 /* ApplicationUnitTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ApplicationUnitTests-Info.plist"; sourceTree = "<group>"; };
-		D8233145179F7DDB00AA90A1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		D8233147179F7DDB00AA90A1 /* ApplicationUnitTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApplicationUnitTests.h; sourceTree = "<group>"; };
 		D8233148179F7DDB00AA90A1 /* ApplicationUnitTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApplicationUnitTests.m; sourceTree = "<group>"; };
 		D823314A179F7DDB00AA90A1 /* ApplicationUnitTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ApplicationUnitTests-Prefix.pch"; sourceTree = "<group>"; };
@@ -124,8 +123,18 @@
 		D825DA6A17B92F4E006D4011 /* SelectBannerBg-03-landscape.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SelectBannerBg-03-landscape.png"; sourceTree = "<group>"; };
 		D825DA6B17B92F4F006D4011 /* Stamp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Stamp.png; sourceTree = "<group>"; };
 		D825DA6C17B92F4F006D4011 /* WoodTextureBg-Bottom.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WoodTextureBg-Bottom.png"; sourceTree = "<group>"; };
-		D825DA6D17B92F50006D4011 /* WoodTextureBg-Top-Landscape.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WoodTextureBg-Top-Landscape.png"; sourceTree = "<group>"; };
-		D825DA6E17B92F51006D4011 /* WoodTextureBg-Top-Portrait.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WoodTextureBg-Top-Portrait.png"; sourceTree = "<group>"; };
+		D83A628017BF2AAB001666DE /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		D83A628A17BF2F2C001666DE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
+		D83A628D17BF30FE001666DE /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "zh-Hans"; path = "zh-Hans.lproj/WoodTextureBg-Top-Portrait@2x.png"; sourceTree = "<group>"; };
+		D83A629017BF3129001666DE /* en */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = en; path = "en.lproj/WoodTextureBg-Top-Portrait@2x.png"; sourceTree = "<group>"; };
+		D83A629217BF3159001666DE /* en */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = en; path = "en.lproj/WoodTextureBg-Top-Portrait.png"; sourceTree = "<group>"; };
+		D83A629417BF315D001666DE /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "zh-Hans"; path = "zh-Hans.lproj/WoodTextureBg-Top-Portrait.png"; sourceTree = "<group>"; };
+		D83A629617BF3165001666DE /* en */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = en; path = "en.lproj/WoodTextureBg-Top-Landscape@2x.png"; sourceTree = "<group>"; };
+		D83A629817BF316C001666DE /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "zh-Hans"; path = "zh-Hans.lproj/WoodTextureBg-Top-Landscape@2x.png"; sourceTree = "<group>"; };
+		D83A629A17BF318A001666DE /* en */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = en; path = "en.lproj/WoodTextureBg-Top-Landscape.png"; sourceTree = "<group>"; };
+		D83A629C17BF318D001666DE /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "zh-Hans"; path = "zh-Hans.lproj/WoodTextureBg-Top-Landscape.png"; sourceTree = "<group>"; };
+		D83A62A117BF31FB001666DE /* TodayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TodayViewController.m; sourceTree = "<group>"; };
+		D83A62A417BF32DD001666DE /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/MainStoryboard.strings"; sourceTree = "<group>"; };
 		D850080A17451976008AE1D4 /* TaskSelectionTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = TaskSelectionTableViewController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		D850080B17451976008AE1D4 /* TaskSelectionTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = TaskSelectionTableViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		D8543CF917B523BA009B6B51 /* Icon-Small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small.png"; sourceTree = "<group>"; };
@@ -155,25 +164,21 @@
 		D8656BE6172F932800C0AFDE /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		D8656BE8172F932800C0AFDE /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		D8656BEE172F932800C0AFDE /* Do Less-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Do Less-Info.plist"; sourceTree = "<group>"; };
-		D8656BF0172F932800C0AFDE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		D8656BF2172F932800C0AFDE /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = main.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		D8656BF4172F932800C0AFDE /* Do Less-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = "Do Less-Prefix.pch"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		D8656BF5172F932800C0AFDE /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = AppDelegate.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		D8656BF6172F932800C0AFDE /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = AppDelegate.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		D8656BFC172F932800C0AFDE /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		D8656BFF172F932800C0AFDE /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
 		D8656C01172F932800C0AFDE /* TodayViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = TodayViewController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
-		D8656C02172F932800C0AFDE /* TodayViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = TodayViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		D8656C0D172F932800C0AFDE /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		D8656C24172F97BD00C0AFDE /* EventKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKit.framework; path = System/Library/Frameworks/EventKit.framework; sourceTree = SDKROOT; };
 		D8656C26172F9A2C00C0AFDE /* Task.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = Task.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		D8656C27172F9A2C00C0AFDE /* Task.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = Task.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		D87D17BA17C08D9700DD7FCB /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		D87F666717B648BB00258D76 /* SelectBannerBg-01-landscape@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SelectBannerBg-01-landscape@2x.png"; sourceTree = "<group>"; };
 		D87F666817B648BB00258D76 /* SelectBannerBg-02-landscape@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SelectBannerBg-02-landscape@2x.png"; sourceTree = "<group>"; };
 		D87F666917B648BB00258D76 /* SelectBannerBg-03-landscape@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SelectBannerBg-03-landscape@2x.png"; sourceTree = "<group>"; };
 		D87F667917B6931000258D76 /* WoodTextureBg-Bottom@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WoodTextureBg-Bottom@2x.png"; sourceTree = "<group>"; };
-		D87F667A17B6931100258D76 /* WoodTextureBg-Top-Landscape@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WoodTextureBg-Top-Landscape@2x.png"; sourceTree = "<group>"; };
-		D87F667B17B6931100258D76 /* WoodTextureBg-Top-Portrait@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WoodTextureBg-Top-Portrait@2x.png"; sourceTree = "<group>"; };
 		D885529517B0EDCA00206229 /* Common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Common.h; sourceTree = "<group>"; };
 		D885529617B0EDCA00206229 /* Common.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Common.m; sourceTree = "<group>"; };
 		D885529817B12D4B00206229 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
@@ -244,7 +249,6 @@
 			isa = PBXGroup;
 			children = (
 				D8233143179F7DDB00AA90A1 /* ApplicationUnitTests-Info.plist */,
-				D8233144179F7DDB00AA90A1 /* InfoPlist.strings */,
 				D823314A179F7DDB00AA90A1 /* ApplicationUnitTests-Prefix.pch */,
 			);
 			name = "Supporting Files";
@@ -291,6 +295,7 @@
 		D8656BED172F932800C0AFDE /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				D87D17B917C08D9700DD7FCB /* Localizable.strings */,
 				D8656BEE172F932800C0AFDE /* Do Less-Info.plist */,
 				D8656BEF172F932800C0AFDE /* InfoPlist.strings */,
 			);
@@ -311,10 +316,10 @@
 		D8656C2A172F9A4700C0AFDE /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				D8656C01172F932800C0AFDE /* TodayViewController.h */,
-				D8656C02172F932800C0AFDE /* TodayViewController.m */,
 				D850080A17451976008AE1D4 /* TaskSelectionTableViewController.h */,
 				D850080B17451976008AE1D4 /* TaskSelectionTableViewController.m */,
+				D8656C01172F932800C0AFDE /* TodayViewController.h */,
+				D83A62A117BF31FB001666DE /* TodayViewController.m */,
 			);
 			name = Controllers;
 			path = "Do Less";
@@ -323,12 +328,12 @@
 		D885529417B0ED8C00206229 /* Misc Source */ = {
 			isa = PBXGroup;
 			children = (
-				D885529517B0EDCA00206229 /* Common.h */,
-				D885529617B0EDCA00206229 /* Common.m */,
 				D8656BF5172F932800C0AFDE /* AppDelegate.h */,
 				D8656BF6172F932800C0AFDE /* AppDelegate.m */,
-				D8656BF2172F932800C0AFDE /* main.m */,
+				D885529517B0EDCA00206229 /* Common.h */,
+				D885529617B0EDCA00206229 /* Common.m */,
 				D8656BF4172F932800C0AFDE /* Do Less-Prefix.pch */,
+				D8656BF2172F932800C0AFDE /* main.m */,
 			);
 			name = "Misc Source";
 			path = "Do Less";
@@ -398,10 +403,10 @@
 				D85AA502179A809B005F228C /* Stamp@2x.png */,
 				D825DA6C17B92F4F006D4011 /* WoodTextureBg-Bottom.png */,
 				D87F667917B6931000258D76 /* WoodTextureBg-Bottom@2x.png */,
-				D825DA6D17B92F50006D4011 /* WoodTextureBg-Top-Landscape.png */,
-				D87F667A17B6931100258D76 /* WoodTextureBg-Top-Landscape@2x.png */,
-				D825DA6E17B92F51006D4011 /* WoodTextureBg-Top-Portrait.png */,
-				D87F667B17B6931100258D76 /* WoodTextureBg-Top-Portrait@2x.png */,
+				D83A629B17BF318A001666DE /* WoodTextureBg-Top-Landscape.png */,
+				D83A629717BF3165001666DE /* WoodTextureBg-Top-Landscape@2x.png */,
+				D83A629317BF3159001666DE /* WoodTextureBg-Top-Portrait.png */,
+				D83A628E17BF30FE001666DE /* WoodTextureBg-Top-Portrait@2x.png */,
 			);
 			name = Assets;
 			path = "Do Less/Assets";
@@ -478,6 +483,8 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				"zh-Hans",
+				Base,
 			);
 			mainGroup = D8656BDA172F932700C0AFDE;
 			productRefGroup = D8656BE4172F932800C0AFDE /* Products */;
@@ -495,7 +502,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D8233146179F7DDB00AA90A1 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -553,8 +559,8 @@
 				D87F667117B648BB00258D76 /* SelectBannerBg-02-landscape@2x.png in Resources */,
 				D87F667217B648BB00258D76 /* SelectBannerBg-03-landscape@2x.png in Resources */,
 				D87F667C17B6931200258D76 /* WoodTextureBg-Bottom@2x.png in Resources */,
-				D87F667D17B6931200258D76 /* WoodTextureBg-Top-Landscape@2x.png in Resources */,
-				D87F667E17B6931200258D76 /* WoodTextureBg-Top-Portrait@2x.png in Resources */,
+				D83A629517BF3165001666DE /* WoodTextureBg-Top-Landscape@2x.png in Resources */,
+				D83A628C17BF30FE001666DE /* WoodTextureBg-Top-Portrait@2x.png in Resources */,
 				D825DA6017B91001006D4011 /* IndexHoverBg@2x.png in Resources */,
 				D825DA6F17B92F52006D4011 /* Button-Active.png in Resources */,
 				D825DA7017B92F52006D4011 /* Button-Default.png in Resources */,
@@ -568,8 +574,9 @@
 				D825DA7817B92F52006D4011 /* SelectBannerBg-03-landscape.png in Resources */,
 				D825DA7917B92F52006D4011 /* Stamp.png in Resources */,
 				D825DA7A17B92F52006D4011 /* WoodTextureBg-Bottom.png in Resources */,
-				D825DA7B17B92F52006D4011 /* WoodTextureBg-Top-Landscape.png in Resources */,
-				D825DA7C17B92F52006D4011 /* WoodTextureBg-Top-Portrait.png in Resources */,
+				D83A629917BF318A001666DE /* WoodTextureBg-Top-Landscape.png in Resources */,
+				D83A629117BF3159001666DE /* WoodTextureBg-Top-Portrait.png in Resources */,
+				D87D17BB17C08D9700DD7FCB /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -607,11 +614,11 @@
 				D8AC75CC1796B6D900883487 /* TaskCell.m in Sources */,
 				D8656BF3172F932800C0AFDE /* main.m in Sources */,
 				D8656BF7172F932800C0AFDE /* AppDelegate.m in Sources */,
-				D8656C03172F932800C0AFDE /* TodayViewController.m in Sources */,
 				D8656C28172F9A2C00C0AFDE /* Task.m in Sources */,
 				D850080C17451976008AE1D4 /* TaskSelectionTableViewController.m in Sources */,
 				D885529717B0EDCA00206229 /* Common.m in Sources */,
 				D8543D1417B62BAA009B6B51 /* TaskTableView.m in Sources */,
+				D83A62A217BF31FB001666DE /* TodayViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -626,18 +633,46 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		D8233144179F7DDB00AA90A1 /* InfoPlist.strings */ = {
+		D83A628E17BF30FE001666DE /* WoodTextureBg-Top-Portrait@2x.png */ = {
 			isa = PBXVariantGroup;
 			children = (
-				D8233145179F7DDB00AA90A1 /* en */,
+				D83A628D17BF30FE001666DE /* zh-Hans */,
+				D83A629017BF3129001666DE /* en */,
 			);
-			name = InfoPlist.strings;
+			name = "WoodTextureBg-Top-Portrait@2x.png";
+			sourceTree = "<group>";
+		};
+		D83A629317BF3159001666DE /* WoodTextureBg-Top-Portrait.png */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D83A629217BF3159001666DE /* en */,
+				D83A629417BF315D001666DE /* zh-Hans */,
+			);
+			name = "WoodTextureBg-Top-Portrait.png";
+			sourceTree = "<group>";
+		};
+		D83A629717BF3165001666DE /* WoodTextureBg-Top-Landscape@2x.png */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D83A629617BF3165001666DE /* en */,
+				D83A629817BF316C001666DE /* zh-Hans */,
+			);
+			name = "WoodTextureBg-Top-Landscape@2x.png";
+			sourceTree = "<group>";
+		};
+		D83A629B17BF318A001666DE /* WoodTextureBg-Top-Landscape.png */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D83A629A17BF318A001666DE /* en */,
+				D83A629C17BF318D001666DE /* zh-Hans */,
+			);
+			name = "WoodTextureBg-Top-Landscape.png";
 			sourceTree = "<group>";
 		};
 		D8656BEF172F932800C0AFDE /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				D8656BF0172F932800C0AFDE /* en */,
+				D83A628017BF2AAB001666DE /* zh-Hans */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -645,10 +680,19 @@
 		D8656BFE172F932800C0AFDE /* MainStoryboard.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				D8656BFF172F932800C0AFDE /* en */,
+				D83A628A17BF2F2C001666DE /* Base */,
+				D83A62A417BF32DD001666DE /* zh-Hans */,
 			);
 			name = MainStoryboard.storyboard;
 			path = "Do Less";
+			sourceTree = "<group>";
+		};
+		D87D17B917C08D9700DD7FCB /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D87D17BA17C08D9700DD7FCB /* zh-Hans */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

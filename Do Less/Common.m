@@ -13,10 +13,10 @@
 + (void)alert:(NSString *)msg
 {
     NSLog(@"%@", msg);
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Eh..."
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Eh...", "AlertView title")
                                                     message:msg
                                                    delegate:nil
-                                          cancelButtonTitle:@"OK"
+                                          cancelButtonTitle:NSLocalizedString(@"OK", @"Cancel button title for AlertView")
                                           otherButtonTitles:nil];
     [alert show];
 }

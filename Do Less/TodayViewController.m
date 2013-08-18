@@ -48,19 +48,19 @@
         doLessList.source = self.model.eventStore.defaultCalendarForNewReminders.source;
 
         EKReminder *task1 = [EKReminder reminderWithEventStore:self.model.eventStore];
-        task1.title = @"Tap to select task";
+        task1.title = NSLocalizedString(@"Tap to select a task", @"User Instruction 1");
         task1.calendar = doLessList;
         
         EKReminder *task2 = [EKReminder reminderWithEventStore:self.model.eventStore];
-        task2.title = @"Long press to toggle completion";
+        task2.title = NSLocalizedString(@"Long press to toggle completion", @"User Instruction 2");
         task2.calendar = doLessList;
         
         EKReminder *task3 = [EKReminder reminderWithEventStore:self.model.eventStore];
-        task3.title = @"Shake to dismiss tasks";
+        task3.title = NSLocalizedString(@"Shake to dismiss tasks", @"User Instruction 3");
         task3.calendar = doLessList;
         
         EKReminder *task4 = [EKReminder reminderWithEventStore:self.model.eventStore];
-        task4.title = @"Use the Reminder app to manage your tasks";
+        task4.title = NSLocalizedString(@"Use the Reminder app to manage your tasks", @"User instruction 4");
         task4.calendar = doLessList;
         
         NSError *error;
@@ -167,7 +167,7 @@
         case EKAuthorizationStatusDenied:
         case EKAuthorizationStatusRestricted:
         {
-            [Common alert: @"To let Do Less work properly, please authorize it to access your reminders."];
+            [Common alert: NSLocalizedString(@"To let Do Less work properly, please authorize it to access your reminders.", @"Ask user to grant the access to his/her reminders")];
             break;
         }
         case EKAuthorizationStatusNotDetermined:
@@ -177,7 +177,7 @@
                     if (granted && !error) {
                         [self loadTodayTasks];
                     } else if (!granted) {
-                        [Common alert: @"To let Do Less work properly, please authorize it to access your reminders."];
+                        [Common alert: NSLocalizedString(@"To let Do Less work properly, please authorize it to access your reminders.", @"Ask user to grant the access to his/her reminders")];
                     } else {
                         [Common alert:[error localizedDescription]];
                     }
@@ -258,21 +258,22 @@
     // User was shaking the device and current is seeable
     if (motion == UIEventSubtypeMotionShake && self.view.window)
     {
-        NSMutableArray *uncompletedTasks = [[NSMutableArray alloc] init];
+        NSMutableArray *completedTasks = [[NSMutableArray alloc] init];
 
         for (NSUInteger i=0; i<[self.todayTasks count]; i++) {
             EKReminder *task = self.todayTasks[i];
-            if ((id)task != [NSNull null] && task.completed == NO) {
-                [uncompletedTasks addObject:[NSNumber numberWithUnsignedInteger:i]];
+            if ((id)task != [NSNull null] && task.completed == YES) {
+                [completedTasks addObject:[NSNumber numberWithUnsignedInteger:i]];
             }
         }
 
-        if ([uncompletedTasks count] == 0) {
+        // If there are completed tasks, dismiss only them; if no completed task, dismiss all tasks.
+        if ([completedTasks count] == 0) {
             for (NSUInteger i=0; i<[self.todayTasks count]; i++) {
                 self.todayTasks[i] = [NSNull null];
             }
         } else {
-            for (NSNumber *j in uncompletedTasks) {
+            for (NSNumber *j in completedTasks) {
                 self.todayTasks[[j unsignedIntegerValue]] = [NSNull null];
             }
         }
