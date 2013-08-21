@@ -132,7 +132,6 @@
 		D83A629617BF3165001666DE /* en */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = en; path = "en.lproj/WoodTextureBg-Top-Landscape@2x.png"; sourceTree = "<group>"; };
 		D83A629817BF316C001666DE /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "zh-Hans"; path = "zh-Hans.lproj/WoodTextureBg-Top-Landscape@2x.png"; sourceTree = "<group>"; };
 		D83A629A17BF318A001666DE /* en */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = en; path = "en.lproj/WoodTextureBg-Top-Landscape.png"; sourceTree = "<group>"; };
-		D83A629C17BF318D001666DE /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "zh-Hans"; path = "zh-Hans.lproj/WoodTextureBg-Top-Landscape.png"; sourceTree = "<group>"; };
 		D83A62A117BF31FB001666DE /* TodayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TodayViewController.m; sourceTree = "<group>"; };
 		D83A62A417BF32DD001666DE /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/MainStoryboard.strings"; sourceTree = "<group>"; };
 		D850080A17451976008AE1D4 /* TaskSelectionTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = TaskSelectionTableViewController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
@@ -160,6 +159,7 @@
 		D85AA502179A809B005F228C /* Stamp@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Stamp@2x.png"; sourceTree = "<group>"; };
 		D85AA504179AB575005F228C /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		D85EC3E1173118FD009DA21D /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
+		D861799317C4E37300E687C0 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "zh-Hans"; path = "zh-Hans.lproj/WoodTextureBg-Top-Landscape.png"; sourceTree = "<group>"; };
 		D8656BE3172F932800C0AFDE /* Do Less.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Do Less.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8656BE6172F932800C0AFDE /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		D8656BE8172F932800C0AFDE /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -664,7 +664,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				D83A629A17BF318A001666DE /* en */,
-				D83A629C17BF318D001666DE /* zh-Hans */,
+				D861799317C4E37300E687C0 /* zh-Hans */,
 			);
 			name = "WoodTextureBg-Top-Landscape.png";
 			sourceTree = "<group>";
@@ -775,7 +775,8 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -783,6 +784,8 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
