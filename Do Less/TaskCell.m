@@ -56,6 +56,8 @@
 
         // Create a system sound object representing the sound file
         AudioServicesCreateSystemSoundID(soundFileURLRef, &_stampingSound);
+
+        CFRelease(soundFileURLRef);
     }
 
     return _stampingSound;
