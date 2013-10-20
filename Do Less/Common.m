@@ -31,4 +31,13 @@
     return CGSizeMake(1, 1);
 }
 
++ (NSArray *)themeColors
+{
+    return @[
+         [UIColor colorWithRed:255/255.0 green:128/255.0 blue:128/255.0 alpha:1],
+         [UIColor colorWithRed:115/255.0 green:230/255.0 blue:115/255.0 alpha:1],
+         [UIColor colorWithRed:102/255.0 green:204/255.0 blue:204/255.0 alpha:1],
+    ];
+}
+
 @end

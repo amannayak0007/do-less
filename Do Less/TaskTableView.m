@@ -10,15 +10,17 @@
 #import "Common.h"
 
 @interface TaskTableView ()
-@property (strong, nonatomic) UIImageView *outerHeaderView;
+@property (strong, nonatomic) UILabel *outerHeaderView;
 @end
 
 @implementation TaskTableView
 
-- (UIImageView*)outerHeaderView
+- (UILabel*)outerHeaderView
 {
     if (!_outerHeaderView) {
-        _outerHeaderView = [[UIImageView alloc] init];
+        _outerHeaderView = [[UILabel alloc] init];
+        _outerHeaderView.textColor = [UIColor grayColor];
+        _outerHeaderView.textAlignment = NSTextAlignmentCenter;
     }
     return _outerHeaderView;
 }
@@ -38,16 +40,13 @@
 {
     [super layoutSubviews];
 
-    NSMutableString *imageFileName = [@"WoodTextureBg-Top" mutableCopy];
-
     if (self.bounds.size.width > self.bounds.size.height) {
-        [imageFileName appendString:@"-Landscape"];
+        self.outerHeaderView.text = NSLocalizedString(@"You don't find time for important things, you make it.", @"Quote 1");
     } else {
-        [imageFileName appendString:@"-Portrait"];
+        self.outerHeaderView.text = NSLocalizedString(@"Do the ugliest thing first.", @"Quote 2");
     }
 
-    self.outerHeaderView.image = [UIImage imageNamed:imageFileName];
-    [self.outerHeaderView sizeToFit];
-    self.outerHeaderView.center = CGPointMake(self.bounds.size.width/2, -self.outerHeaderView.image.size.height/2);
+    self.outerHeaderView.bounds = CGRectMake(0, 0, self.bounds.size.width, 20);
+    self.outerHeaderView.center = CGPointMake(self.bounds.size.width/2, -20);
 }
 @end

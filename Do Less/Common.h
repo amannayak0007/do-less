@@ -14,4 +14,5 @@
 + (void)alert:(NSString *)msg;
 + (UIColor *)shadowColor;
 + (CGSize)shadowOffset;
++ (NSArray *)themeColors;
 @end

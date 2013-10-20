@@ -13,9 +13,6 @@
 @interface TaskSelectionTableViewController ()
 
 @property (strong, nonatomic) Task *model;
-@property (strong, nonatomic) UIImage *sectionHeaderBackground;
-@property (strong, nonatomic) UIImage *tableBackground;
-@property (strong, nonatomic) UIImage *cellSelectedBackground;
 
 @end
 
@@ -31,31 +28,6 @@
     return _model;
 }
 
-- (UIImage *)sectionHeaderBackground
-{
-    if (!_sectionHeaderBackground) {
-        _sectionHeaderBackground = [[UIImage imageNamed:@"ListHeaderBg.png"] resizableImageWithCapInsets:UIEdgeInsetsZero];
-    }
-
-    return _sectionHeaderBackground;
-}
-
-- (UIImage *)tableBackground
-{
-    if (!_tableBackground) {
-        _tableBackground = [[UIImage imageNamed:@"ListPageBg"]resizableImageWithCapInsets:UIEdgeInsetsZero];
-    }
-    return _tableBackground;
-}
-
-- (UIImage *)cellSelectedBackground
-{
-    if (!_cellSelectedBackground) {
-        _cellSelectedBackground = [[UIImage imageNamed:@"ListHover"]resizableImageWithCapInsets:UIEdgeInsetsZero];
-    }
-    return _cellSelectedBackground;
-}
-
 #pragma mark - View Controller
 
 - (void)viewDidLoad
@@ -64,26 +36,19 @@
 
 //    self.navigationItem.rightBarButtonItem = self.editButtonItem;
 
-    [self configNavBarBackgroundImage];
+    self.navigationController.navigationBar.barTintColor = [Common themeColors][self.navBarColorIndex];
 
-    self.tableView.backgroundView = [[UIImageView alloc] initWithImage:self.tableBackground];
+    self.tableView.backgroundColor = [UIColor whiteColor];
+
+   [[NSNotificationCenter defaultCenter] addObserver:self
+                                         selector:@selector(eventStoreChanged:)
+                                             name:EKEventStoreChangedNotification
+                                           object:self.model.eventStore];
 }
 
-- (void)configNavBarBackgroundImage
+- (void)eventStoreChanged:(NSNotification *)notification
 {
-    NSMutableString *imageFileName = [@"SelectBannerBg" mutableCopy];
-
-    [imageFileName appendFormat:@"-%02d", self.navBarColorIndex + 1];
-
-    NSString *portraitFileName = [imageFileName stringByAppendingString:@"-portrait"];
-    NSString *landscapeFileName = [imageFileName stringByAppendingString:@"-landscape"];
-
-    if (IS_WIDESCREEN) {
-        landscapeFileName = [landscapeFileName stringByAppendingString:@"-568h"];
-    }
-
-    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:portraitFileName] forBarMetrics:UIBarMetricsDefault];
-    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:landscapeFileName] forBarMetrics:UIBarMetricsLandscapePhone];
+    [self.tableView reloadData];
 }
 
 - (void)setEditing:(BOOL)editing animated:(BOOL)animated
@@ -145,8 +110,6 @@
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
     }
 
-    cell.selectedBackgroundView = [[UIImageView alloc]initWithImage:self.cellSelectedBackground];
-
     return cell;
 }
 
@@ -173,30 +136,6 @@
     self.selectedTask = [self.model taskWithIndexPath:indexPath];
 
     [self performSegueWithIdentifier:@"BackToTasksToday" sender:self];
-}
-
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-{
-    UIImageView *header = [[UIImageView alloc] initWithImage:self.sectionHeaderBackground];
-
-    UILabel *title = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, header.bounds.size.width, header.bounds.size.height)];
-    title.backgroundColor = [UIColor clearColor];
-    title.textColor = [UIColor whiteColor];
-    title.text = [self tableView:tableView titleForHeaderInSection:section];
-    title.font = [UIFont boldSystemFontOfSize:20];
-    title.shadowColor = [Common shadowColor];
-    title.shadowOffset = [Common shadowOffset];
-
-    [header addSubview:title];
-
-
-    return header;
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-{
-    NSArray *tasks = [self.model tasksWithSection:section];
-    return [tasks count] == 0 ? 0 : self.sectionHeaderBackground.size.height;
 }
 
 @end

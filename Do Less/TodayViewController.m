@@ -122,24 +122,6 @@
 
 #pragma mark - View Controller
 
-- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
-{
-    for (UITableViewCell *cell in self.tableView.visibleCells) {
-        NSInteger idx = [self.tableView indexPathForCell:cell].row;
-        [self configCellBackground:cell ByIndex:idx andOrientation:toInterfaceOrientation];
-    }
-}
-
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-
-    for (UITableViewCell *cell in self.tableView.visibleCells) {
-        NSInteger idx = [self.tableView indexPathForCell:cell].row;
-        [self configCellBackground:cell ByIndex:idx andOrientation:self.interfaceOrientation];
-    }
-}
-
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
@@ -203,9 +185,6 @@
                                                  name:UIApplicationDidEnterBackgroundNotification
                                                object:[UIApplication sharedApplication]];
 
-    self.tableView.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"WoodTextureBg-Bottom"]];
-    [self.tableView.backgroundView sizeToFit];
-    self.tableView.backgroundView.center = self.tableView.center;
 }
 
 - (void)didEnterBackground:(NSNotification *)notification
@@ -227,9 +206,11 @@
     if (![self.model.eventStore commit:&error]) {
         NSLog(@"%@", [error localizedDescription]);
     }
+}
 
-    // Dismiss task selection view
-    [self dismissViewControllerAnimated:NO completion:^{}];
+- (UIStatusBarStyle)preferredStatusBarStyle
+{
+    return UIStatusBarStyleLightContent;
 }
 
 - (BOOL)canBecomeFirstResponder
@@ -292,21 +273,6 @@
         taskSelectionTVC.replacedTask = (EKReminder *)sender;
         taskSelectionTVC.todayTasks = self.todayTasks;
         taskSelectionTVC.navBarColorIndex = self.replacedIndex;
-    
-        [[UIBarButtonItem appearance] setBackgroundImage:[[UIImage imageNamed:@"Button-Default"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 10, 0, 10)]
-                                   forState:UIControlStateNormal
-                                 barMetrics:UIBarMetricsDefault];
-        [[UIBarButtonItem appearance] setBackgroundImage:[[UIImage imageNamed:@"Button-Active"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 10, 0, 10)]
-                                   forState:UIControlStateHighlighted
-                                 barMetrics:UIBarMetricsDefault];
-
-        [[UIBarButtonItem appearance] setBackgroundImage:[[UIImage imageNamed:@"Button-Landscape-Default"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 10, 0, 10)]
-                                   forState:UIControlStateNormal
-                                 barMetrics:UIBarMetricsLandscapePhone];
-        [[UIBarButtonItem appearance] setBackgroundImage:[[UIImage imageNamed:@"Button-Landscape-Active"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 10, 0, 10)]
-                                   forState:UIControlStateHighlighted
-                                 barMetrics:UIBarMetricsLandscapePhone];
-
     }
 }
 
@@ -362,27 +328,6 @@
     }
 }
 
-- (void)configCellBackground:(UITableViewCell *)cell ByIndex:(NSUInteger)idx andOrientation:(UIInterfaceOrientation)orientation
-{
-    NSMutableString *imageFileName = [@"IndexBg" mutableCopy];
-
-    if (UIInterfaceOrientationIsLandscape(orientation)) {
-        [imageFileName appendString:@"-Landscape"];
-    } else {
-        [imageFileName appendString:@"-Portrait"];
-    }
-
-    [imageFileName appendFormat:@"-%02d", idx + 1];
-
-
-    if (IS_WIDESCREEN) {
-        [imageFileName appendFormat:@"-568h"];
-    }
-    
-    cell.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:imageFileName]];
-    cell.selectedBackgroundView = [[UIImageView alloc] initWithImage:[[UIImage imageNamed:@"IndexHoverBg"] resizableImageWithCapInsets:UIEdgeInsetsZero]];
-}
-
 #pragma mark - Table view data source
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -421,7 +366,7 @@
     cell.textLabel.shadowColor = [Common shadowColor];
     cell.textLabel.shadowOffset = [Common shadowOffset];
 
-    [self configCellBackground:cell ByIndex:indexPath.row andOrientation:self.interfaceOrientation];
+    cell.backgroundColor = [Common themeColors][indexPath.row];
 
     return cell;
 }
